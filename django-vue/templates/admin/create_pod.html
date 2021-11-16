@@ -1,0 +1,13 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+    <div>
+        <form action="." method="POST" enctype="multipart/form-data">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <br>
+            <p>Note: <strong><br>Upload a CSV file in STUDENT before generating pod groups</strong></p>
+            <button>Generate Pods</button>
+        </form>
+    </div>
+{% endblock %}
