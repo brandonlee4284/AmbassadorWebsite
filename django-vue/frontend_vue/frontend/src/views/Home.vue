@@ -119,6 +119,13 @@ export default {
 
 }
 
+img:hover{
+  box-shadow: 0 50px 50px 0 rgba(0,0,0,0.2);
+}
+img{
+  transition: 0.3s;
+}
+
 
 
  

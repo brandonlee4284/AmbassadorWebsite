@@ -1,6 +1,7 @@
 <template>  
 
-  <div v-if="accessToken!=null">
+  <div>
+  
     <div class="sidebar" :style="{ width: sidebarWidth }">
     <h1>
       <span v-if="collapsed" style="font-family: Copperplate;">
@@ -10,21 +11,24 @@
       <span v-else><a><img src="https://mvhs.mvla.net/images/logo.png" alt="mvhs-logo" width = "160" height = "80"></a></span>
     </h1>
 
-    
-    <SidebarLink to="/" icon="fas fa-home">Home</SidebarLink>
-    <SidebarLink to="/pods" icon="fas fa-users">Pods</SidebarLink>
-    <SidebarLink to="/schedule" icon="fas fa-calendar">Schedule</SidebarLink>
-    <SidebarLink to="/resources" icon="fas fa-book">Resources</SidebarLink>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <SidebarLink to="/log-out" icon="fas fa-sign-out-alt">Logout</SidebarLink>
-
+    <div v-if="accessToken!=null">
+      <SidebarLink to="/" icon="fas fa-home" @click="scrollToTop()">Home</SidebarLink>
+      <SidebarLink to="/pods" icon="fas fa-users" @click="scrollToTop()">Pods</SidebarLink>
+      <SidebarLink to="/schedule" icon="fas fa-calendar" @click="scrollToTop()">Schedule</SidebarLink>
+      <SidebarLink to="/resources" icon="fas fa-book" @click="scrollToTop()">Resources</SidebarLink>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <SidebarLink to="/log-out" icon="fas fa-sign-out-alt">Logout</SidebarLink>
+    </div>
+    <div v-if="accessToken==null">
+      <SidebarLink to="/log-in" icon="fas fa-sign-in-alt" @click="scrollToTop()">Login</SidebarLink>
+    </div>
 
 
     <div 
     v-if="$isMobile()" 
-    v-on="collapsed=true"
     >
     </div>
+    
 
 
 
@@ -39,8 +43,7 @@
     </div>
     
   </div>
-    
-
+  
 
   </div>
 
@@ -58,7 +61,12 @@ import { collapsed, toggleSidebar, sidebarWidth } from './state'
     components: { SidebarLink },
     setup() {
     return { collapsed, toggleSidebar, sidebarWidth }
-  }
+  },
+  methods: { 
+    scrollToTop() {
+        window.scrollTo(0,0);
+    }
+}
     
  }
 

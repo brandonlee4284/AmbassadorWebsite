@@ -1,11 +1,10 @@
 <template>
-  <div class="background"><br><br><br>
+  <div><br><br>
   <div class="container text-dark">
-    <div class="row justify-content-md-center">
       <div class="col-md-5 p-3 login justify-content-md-center"><hr>
         <img src="https://mvhs.mvla.net/images/logo.png" alt="mvhs-logo" class="i">
         <br><br>
-        <h1 class="h3 mb-3 font-weight-normal text-center">Pod Leader Login</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-center">Ambassador Login</h1>
         <br>
         <p v-if="incorrectAuth">Incorrect username or password entered - please try again</p>
         <form v-on:submit.prevent="login">
@@ -24,7 +23,6 @@
       </div>
     </div>
   </div>
-  <br><br></div>
 </template>
 
 <script>
@@ -63,14 +61,12 @@ export default {
 </script>
 
 <style>
-.background{
-  background-color:#FFD700;
-}
+
 
 .login{
   background-color:white;
   transition: 0.3s;
-  
+  margin: auto;
 
 }
 

@@ -105,7 +105,6 @@
 
 
   </div>
-  
 </template>
 
 <script>
@@ -115,13 +114,16 @@ import { sidebarWidth } from '@/components/state'
 export default {
   name: 'App',
   components: {
-      Navbar
+      Navbar,
   },
+  
+  computed: mapState(['accessToken']),
+  
   setup() {
     return { sidebarWidth }
     
   },
-  computed: mapState(['accessToken']),
+  
   
   
 }
@@ -139,8 +141,8 @@ export default {
     right: 30px;
   }
   #app {
-  font-family: Helvetica, Arial, sans-serif;
-  color: #2c3e50;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #2c3e50;
   }
   #nav {
     padding: 30px;
