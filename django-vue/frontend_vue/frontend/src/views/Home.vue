@@ -7,6 +7,8 @@
               
 
             </div>-->
+
+            <!-- -->
             <a href="https://mvhs.mvla.net/Student-Activities/2022-Senior-Year/index.html" target="_blank">
                 <img src="https://mvhs.mvla.net/pictures/Seniors.jpg" alt="senior-annoucement" class="responsive" width="500" height="300">
             </a>
