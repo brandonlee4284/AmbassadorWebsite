@@ -13,7 +13,7 @@ import pandas as pd
 import random
 import tensorflow as tf
 import numpy as np
-from .models import Pod, Home, Resources, Schedule
+from .models import Pod, Home, Resources, Schedule, HomeImage
 
 class CsvImportForm(forms.Form):
     csv_upload = forms.FileField()
@@ -250,6 +250,7 @@ class PodAdmin(admin.ModelAdmin):
 
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Home)
+admin.site.register(HomeImage)
 admin.site.register(Pod, PodAdmin)
 admin.site.register(Schedule)
 admin.site.register(Resources)

@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import generics
-from . models import Pod, Home, Resources, Schedule
-from . serializers import PodSerializer, HomeSerializer, ResourcesSerializer, ScheduleSerializer
+from . models import Pod, Home, Resources, Schedule, HomeImage
+from . serializers import PodSerializer, HomeSerializer, ResourcesSerializer, ScheduleSerializer, HomeImageSerializer
 from rest_framework.permissions import IsAuthenticated
 
 # RetrieveAPIView - used for read-only endpoints to represent a single model instance.
@@ -43,3 +43,11 @@ class ScheduleView(generics.RetrieveAPIView):
         serializer = ScheduleSerializer(queryset, many=True)
         return Response(serializer.data)
 
+class HomeImageView(generics.RetrieveAPIView):
+    permission_classes = (IsAuthenticated,)  
+    queryset = HomeImage.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = HomeImageSerializer(queryset, many=True)
+        return Response(serializer.data)

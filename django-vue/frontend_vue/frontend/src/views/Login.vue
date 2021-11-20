@@ -4,9 +4,9 @@
       <div class="col-md-5 p-3 login justify-content-md-center"><hr>
         <img src="https://mvhs.mvla.net/images/logo.png" alt="mvhs-logo" class="i">
         <br><br>
-        <h1 class="h3 mb-3 font-weight-normal text-center">Ambassador Login</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-center" style="font-family:Copperplate">Ambassador Login</h1>
         <br>
-        <p v-if="incorrectAuth">Incorrect username or password entered - please try again</p>
+        
         <form v-on:submit.prevent="login">
           <div class="form-group">
             <input type="text" name="username" id="user" v-model="username" class="form-control" placeholder="Username">
@@ -16,8 +16,10 @@
             <input type="password" name="password" id="pass" v-model="password" class="form-control" placeholder="Password">
           </div>
           <br>
+          <p v-if="incorrectAuth" class="incorrect">Invalid password or username</p>
           <button type="submit" class="btn btn-md btn-primary btn-block">Login</button>
         </form>
+        
         <br><br><br>
         <hr>
       </div>
@@ -80,6 +82,10 @@ export default {
 .login:hover {
   box-shadow: 0 20px 20px 0 rgba(0,0,0,0.2);
 }
+.incorrect{
+  color: red;
+}
+
 
 
 </style>

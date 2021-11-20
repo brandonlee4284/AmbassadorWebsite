@@ -3,19 +3,22 @@
        <div class="album py-5 bg-light">
         <div class="container">
             <h1><i class="fas fa-calendar-alt" style="font-size:32px"></i> Upcoming Events</h1>
-            
-              <a href="https://mvhs.mvla.net/Student-Activities/2022-Senior-Year/index.html" target="_blank">
-                <img src="https://mvhs.mvla.net/pictures/Seniors.jpg" alt="senior-annoucement" class="responsive" width="500" height="300">
-              </a>
+            <!--<div v-for="homeImage in APIData1" :key="homeImage.id" class="col-md-6">
+              
 
+            </div>-->
+            <a href="https://mvhs.mvla.net/Student-Activities/2022-Senior-Year/index.html" target="_blank">
+                <img src="https://mvhs.mvla.net/pictures/Seniors.jpg" alt="senior-annoucement" class="responsive" width="500" height="300">
+            </a>
             <br>
             <div class="dropdown">
               <button class="dropbtn">Filter</button>
               <div class="dropdown-content">
-                <a href="#">Latest to Oldest</a> <!--@click=""-->
+                <a href="#">Latest to Oldest</a>
                 <a href="#">Oldest to Latest</a>
               </div>
             </div>
+            
             <div v-for="home in APIData" :key="home.id" class="col-md-6">
 
               <hr>
@@ -60,16 +63,21 @@ export default {
         console.log(err)
       })
 
-      
+     
+     getAPI.get('/homeImage/', { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } })
+      .then(response => {
+        this.$store.state.APIData1 = response.data
+        
+      })
+      .catch(err => {
+        console.log(err)
+      })
+     
+
+
     },
-  
    
-    
-  
-    
-  
-  
- 
+
 
 }
 </script>

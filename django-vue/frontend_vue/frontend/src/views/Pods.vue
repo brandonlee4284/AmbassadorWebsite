@@ -1,26 +1,33 @@
 <template>
   <div class="pods">
-    <br>
-    
-    <form action="/action_page.php" class="search" style="position:relative;left:20px">
-      <input type="text" placeholder="Search Pod Group.." name="search" style="position:relative;left:-10px">
-      <button type="">Search</button>
-    </form>
-    <!--
-    <div class="dropdown" style="margin:0px 70px">
-      <button class="dropbtn">Filter</button>
-      <div class="dropdown-content">
-        <a>Latest to Oldest</a>
-        <a>Oldest to Latest</a>
-      </div>
-    </div>
-    -->
     <div class="album py-5 bg-light">
         <div class="container">
           <div class="row">
+            <h1><i class="fas fa-users"></i> Assigned Pods</h1>
+            <div>
+              <form class="search">
+                <input type="text" placeholder="Search Pod Group.." name="search" style="position:relative;left:-10px">
+                <button type="">Search</button>
+              </form>
+              
+            </div>
+            
+            
+            <div>
+              <div class="dropdown">
+                <button class="dropbtn">Sort By...</button>
+                <div class="dropdown-content">
+                  <a>Pod Group Number</a>
+                  <a>Pod Leader (Alphabetical)</a>
+                </div>
+              </div>
+            </div>
+            
             <div v-for="pod in APIData" :key="pod.id" class="col-md-4">
               <div class="card mb-4 box-shadow">
+              <router-link :to = "{ name:'pod-view' }" exact @click="scrollToTop()">
                 <img class="card-img-top" src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80" alt="Card image cap">
+              </router-link>
                 <div class="card-body">
                     <h4><a><router-link :to = "{ name:'pod-view' }" exact class="text-secondary">{{pod.pod_group_number}}</router-link></a></h4>
                     <p class="card-text">{{pod.pod_leader}}</p>
@@ -29,6 +36,7 @@
                     <a href="" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true">
                       <router-link :to = "{ name:'pod-view' }" exact>Members</router-link>
                     </a>
+                    
                     </div>
                     <small class="text-muted">Room {{pod.pod_room_number}}</small>
                   </div>
@@ -62,16 +70,20 @@
     },
     methods: { 
     scrollToTop() {
-        window.scrollTo(0,0);
+      window.scrollTo(0,0);
+    },
+    getPodNumber(){
+      
     }
-}
+    
+  }
   }
 </script>
 
 <style scoped>
 .search{
   float: right;
-  margin-right: 70px;
+  padding: 10px 0;
 
 }
 .card:hover {
@@ -87,20 +99,21 @@
   padding: 7px;
   font-size: 16px;
   border: none;
-  width: 100px;
+  width: 150px;
   margin: 10px 0px;
 }
 
 .dropdown {
   position: relative;
-  display: inline-block;
+  float: right;
+  
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 160px;
+  min-width: 100px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -117,4 +130,6 @@
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: gray;}
+
+
 </style>

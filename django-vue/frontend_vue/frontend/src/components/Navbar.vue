@@ -13,10 +13,13 @@
 
     <div v-if="accessToken!=null">
       <SidebarLink to="/" icon="fas fa-home" @click="scrollToTop()">Home</SidebarLink>
+      <br>
       <SidebarLink to="/pods" icon="fas fa-users" @click="scrollToTop()">Pods</SidebarLink>
+      <br>
       <SidebarLink to="/schedule" icon="fas fa-calendar" @click="scrollToTop()">Schedule</SidebarLink>
+      <br>
       <SidebarLink to="/resources" icon="fas fa-book" @click="scrollToTop()">Resources</SidebarLink>
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br>
       <SidebarLink to="/log-out" icon="fas fa-sign-out-alt">Logout</SidebarLink>
     </div>
     <div v-if="accessToken==null">

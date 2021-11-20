@@ -44,4 +44,11 @@ class Home(models.Model):
     return self.annoucement_title
 
 
-
+class HomeImage(models.Model):
+  image_name = models.CharField(max_length=25)
+  url_of_image = models.CharField(max_length=500)
+  image_redirect = models.CharField(max_length=500)
+  
+  
+  def __str__(self):
+    return self.image_name
