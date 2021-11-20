@@ -22,9 +22,7 @@ import { getAPI } from '../axios-api'
 import { mapState } from 'vuex'
   export default {
     name: 'PodView',
-    data(){
-      
-    },
+    
     mounted() {
     document.title = 'Pod View'
     },
