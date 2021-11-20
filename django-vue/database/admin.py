@@ -37,7 +37,7 @@ class StudentAdmin(admin.ModelAdmin):
                 return HttpResponseRedirect(request.path_info)
             
             df = pd.read_csv(csv_file)
-            df.to_csv('/Users/brandonlee/Desktop/V3 Ambassador Project/django-vue/database/student_data.csv', index=False)
+            df.to_csv('student_data.csv', index=False)
             
 
 
@@ -61,11 +61,11 @@ class PodAdmin(admin.ModelAdmin):
 
     def create_pod(self, request):
         if request.method == "POST":
-            new_model = tf.keras.models.load_model('/Users/brandonlee/Desktop/V3 Ambassador Project/ML Model/saved_student_model/my_model')
+            new_model = tf.keras.models.load_model('student_model')
 
             # NORMALIZING TESTING DATA
             #---------------------------------------------------------------------
-            file_path = '/Users/brandonlee/Desktop/V3 Ambassador Project/django-vue/database/student_data.csv'
+            file_path = 'student_data.csv'
 
             student_test_data = pd.read_csv(file_path)
 
