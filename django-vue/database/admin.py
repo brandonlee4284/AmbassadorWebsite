@@ -33,7 +33,7 @@ class StudentAdmin(admin.ModelAdmin):
             csv_file = request.FILES["csv_upload"]
             
             if not csv_file.name.endswith('.csv'):
-                messages.warning(request, 'The wrong file type was uploaded')
+                messages.warning(request, 'The wrong file type was uploaded. Upload a CSV formated file')
                 return HttpResponseRedirect(request.path_info)
             
             df = pd.read_csv(csv_file)
@@ -77,15 +77,15 @@ class PodAdmin(admin.ModelAdmin):
             student_training_data['Gender'] = student_training_data['Gender'].replace(to_replace=['M', 'F', 'OTH'], value=[1, 2, 0])
 
             # vectorizing Language
-            languages_allowed_values = ['English', 'Spanish', 'Mandarin']
+            languages_allowed_values = ['English', 'Spanish']
             student_training_data.loc[~student_training_data['Description_HL'].isin(languages_allowed_values), 'Description_HL'] = 'OTH'
 
-            student_training_data['Description_HL'] = student_training_data['Description_HL'].replace(to_replace=['English', 'Spanish', 'Mandarin', 'OTH'], value=[1, 2, 3, 0])
+            student_training_data['Description_HL'] = student_training_data['Description_HL'].replace(to_replace=['English', 'Spanish','OTH'], value=[1, 2, 0])
 
             # vectorizing if in ELD
-            members_allowed_values = ['ELD 1', 'ELD 2', 'ELD 3', 'ELD 4', 'ELD 5'] #how many ELD groups are there?
+            members_allowed_values = ['ELD 1', 'ELD 2', 'ELD 3', 'ELD 4', 'ELD 5', 'ELD'] #how many ELD groups are there?
             student_training_data.loc[~student_training_data['Group Memberships?'].isin(members_allowed_values), 'Group Memberships?'] = 'OTH'
-            student_training_data['Group Memberships?'] = student_training_data['Group Memberships?'].replace(to_replace=['ELD 1', 'ELD 2', 'ELD 3', 'ELD 4', 'ELD 5', 'OTH'], value=[1, 1, 1, 1, 1, 0])
+            student_training_data['Group Memberships?'] = student_training_data['Group Memberships?'].replace(to_replace=['ELD 1', 'ELD 2', 'ELD 3', 'ELD 4', 'ELD 5','ELD', 'OTH'], value=[1, 1, 1, 1, 1,1, 0])
 
 
             # cleaning data
@@ -127,7 +127,7 @@ class PodAdmin(admin.ModelAdmin):
             #student_training_data = np.asarray(student_training_data).astype('float32')
             tf.convert_to_tensor(student_training_data)
 
-            student_model.fit(student_training_data, student_training_labels, epochs=50)
+            student_model.fit(student_training_data, student_training_labels, epochs=100)
 
             # NORMALIZING TESTING DATA
             #---------------------------------------------------------------------
@@ -145,16 +145,16 @@ class PodAdmin(admin.ModelAdmin):
             student_testing_data['Gender'] = student_testing_data['Gender'].replace(to_replace=['M', 'F', 'OTH'], value=[1, 2, 0])
 
             # vectorizing Language
-            languages_allowed_values = ['English', 'Spanish', 'Mandarin']
+            languages_allowed_values = ['English', 'Spanish']
             student_testing_data.loc[~student_testing_data['Description_HL'].isin(languages_allowed_values), 'Description_HL'] = 'OTH'
 
-            student_testing_data['Description_HL'] = student_testing_data['Description_HL'].replace(to_replace=['English', 'Spanish', 'Mandarin', 'OTH'], value=[1, 2, 3, 0])
+            student_testing_data['Description_HL'] = student_testing_data['Description_HL'].replace(to_replace=['English', 'Spanish', 'OTH'], value=[1, 2, 0])
 
             # vectorizing ELD
-            members_allowed_values = ['ELD 1', 'ELD 2', 'ELD 3', 'ELD 4', 'ELD 5'] #how many ELD groups are there?
+            members_allowed_values = ['ELD 1', 'ELD 2', 'ELD 3', 'ELD 4', 'ELD 5','ELD'] #how many ELD groups are there?
             student_testing_data.loc[~student_testing_data['Group Memberships?'].isin(members_allowed_values), 'Group Memberships?'] = 'OTH'
 
-            student_testing_data['Group Memberships?'] = student_testing_data['Group Memberships?'].replace(to_replace=['ELD 1', 'ELD 2', 'ELD 3', 'ELD 4', 'ELD 5', 'OTH'], value=[1, 1, 1, 1, 1, 0])
+            student_testing_data['Group Memberships?'] = student_testing_data['Group Memberships?'].replace(to_replace=['ELD 1', 'ELD 2', 'ELD 3', 'ELD 4', 'ELD 5', 'ELD', 'OTH'], value=[1, 1, 1, 1, 1, 1, 0])
 
             # cleaning data
             student_testing_data.drop(student_testing_data.columns.difference(['Last Schl', 'Gender','Description_HL', 'Group Memberships?', 'POD GROUP']), axis=1, inplace=True)
@@ -200,7 +200,6 @@ class PodAdmin(admin.ModelAdmin):
             # adding students to their corresponding groups
             english_group_name = []
             spanish_group_name = []
-            mandarin_group_name = []
             other_group_name = []
 
             i = 0
@@ -212,8 +211,6 @@ class PodAdmin(admin.ModelAdmin):
                 if student_dictionary[i]['POD GROUP'] == 1:
                     spanish_group_name.append(f"{student_dictionary[i]['First Name']} {student_dictionary[i]['Last Name']} Student ID: {student_dictionary[i]['Student ID']}")
 
-                if student_dictionary[i]['POD GROUP'] == 2:
-                    mandarin_group_name.append(f"{student_dictionary[i]['First Name']} {student_dictionary[i]['Last Name']} Student ID: {student_dictionary[i]['Student ID']}")
 
                 if student_dictionary[i]['POD GROUP'] == 3:
                     other_group_name.append(f"{student_dictionary[i]['First Name']} {student_dictionary[i]['Last Name']} Student ID: {student_dictionary[i]['Student ID']}")
@@ -226,29 +223,24 @@ class PodAdmin(admin.ModelAdmin):
             total_freshman_students = len(student_dictionary)
             total_english_students = len(english_group_name)
             total_spanish_students = len(spanish_group_name)
-            total_mandarin_students = len(mandarin_group_name)
             total_other_students = len(other_group_name)
 
 
             total_english_pod_groups = int(total_english_students/12) + 1
             total_spanish_pod_groups = int(total_spanish_students/12) + 1
-            total_mandarin_pod_groups = int(total_mandarin_students/12) + 1
             total_other_pod_groups = int(total_other_students/12) + 1
 
             # Grouping pod groups by 12s
             english_student_dictionary = {}
             spanish_student_dictionary = {}
-            mandarin_student_dictionary = {}
             other_student_dictionary = {}
 
             random.shuffle(english_group_name)
             random.shuffle(spanish_group_name)
-            random.shuffle(mandarin_group_name)
             random.shuffle(other_group_name)
 
             extra_english_students = []
             extra_spanish_students = []
-            extra_mandarin_students = []
             extra_other_students = []
 
             def group_students(student_dictionary, group_name, total_students, group_number, extra_students):
@@ -278,21 +270,17 @@ class PodAdmin(admin.ModelAdmin):
             group_number += len(english_student_dictionary)
             group_students(spanish_student_dictionary, spanish_group_name, total_spanish_students, group_number,extra_spanish_students)
 
-            group_number += len(spanish_student_dictionary)
-            group_students(mandarin_student_dictionary, mandarin_group_name, total_mandarin_students, group_number,extra_mandarin_students)
 
-            group_number += len(mandarin_student_dictionary)
+            group_number += len(spanish_student_dictionary)
             group_students(other_student_dictionary, other_group_name, total_other_students, group_number,extra_other_students)
 
 
             print("\nEnglish Groups: \n", english_student_dictionary)
             print("\nSpanish Groups: \n", spanish_student_dictionary)
-            print("\nMandarin Groups: \n", mandarin_student_dictionary)
             print("\nOther Groups: \n", other_student_dictionary)
 
             print("\nEnglish Groups EXTRA: \n", extra_english_students)
             print("\nSpanish Groups EXTRA: \n", extra_spanish_students)
-            print("\nMandarin Groups EXTRA: \n", extra_mandarin_students)
             print("\nOther Groups EXTRA: \n", extra_other_students)
 
             def add_extra_students(student_dictionary, extra_students, group_number, total_pods):
@@ -304,7 +292,7 @@ class PodAdmin(admin.ModelAdmin):
                 if len(extra_students) > 0:
                     count = len(extra_students[0])
                     while count != 0:
-                        if group_number > total_pods:
+                        if (group_number - starting_group_number) == total_pods:
                             group_number = starting_group_number
 
                         student_dictionary["Group {0}".format(group_number)].append(extra_students[0][i])
@@ -321,15 +309,25 @@ class PodAdmin(admin.ModelAdmin):
             total_english_pod_groups = len(english_student_dictionary)
             add_extra_students(english_student_dictionary, extra_english_students, group_number, total_english_pod_groups)
 
-            print("\nEnglish Groups: \n", english_student_dictionary)
             print("\nEnglish Groups EXTRA: \n", extra_english_students)
+            print("\nEnglish Groups: \n", english_student_dictionary)
+            
 
             group_number += len(english_student_dictionary)
             total_spanish_pod_groups = len(spanish_student_dictionary)
             add_extra_students(spanish_student_dictionary, extra_spanish_students, group_number, total_spanish_pod_groups)
 
-            print("\nSpanish Groups: \n", spanish_student_dictionary)
             print("\nSpanish Groups EXTRA: \n", extra_spanish_students)
+            print("\nSpanish Groups: \n", spanish_student_dictionary)
+            
+
+            group_number += len(spanish_student_dictionary)
+            total_other_pod_groups = len(other_student_dictionary)
+            add_extra_students(other_student_dictionary, extra_other_students, group_number, total_other_pod_groups)
+            
+            print("\nOther Groups EXTRA: \n", extra_other_students)
+            print("\nOther Groups: \n", other_student_dictionary)
+            
 
             
 
@@ -340,7 +338,6 @@ class PodAdmin(admin.ModelAdmin):
 
             all_pod_groups_dictionary.update(english_student_dictionary)
             all_pod_groups_dictionary.update(spanish_student_dictionary)
-            all_pod_groups_dictionary.update(mandarin_student_dictionary)
             all_pod_groups_dictionary.update(other_student_dictionary)
 
             number_of_total_pod_groups = len(all_pod_groups_dictionary)

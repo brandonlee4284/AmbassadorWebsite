@@ -72,9 +72,9 @@ student_training_data.loc[~student_training_data['Description_HL'].isin(language
 student_training_data['Description_HL'] = student_training_data['Description_HL'].replace(to_replace=['English', 'Spanish', 'Mandarin', 'OTH'], value=[1, 2, 3, 0])
 
 # vectorizing if in ELD
-members_allowed_values = ['ELD 1', 'ELD 2', 'ELD 3', 'ELD 4', 'ELD 5'] #how many ELD groups are there?
+members_allowed_values = ['ELD', 'ELD 1', 'ELD 2', 'ELD 3', 'ELD 4', 'ELD 5'] #how many ELD groups are there?
 student_training_data.loc[~student_training_data['Group Memberships?'].isin(members_allowed_values), 'Group Memberships?'] = 'OTH'
-student_training_data['Group Memberships?'] = student_training_data['Group Memberships?'].replace(to_replace=['ELD 1', 'ELD 2', 'ELD 3', 'ELD 4', 'ELD 5', 'OTH'], value=[1, 1, 1, 1, 1, 0])
+student_training_data['Group Memberships?'] = student_training_data['Group Memberships?'].replace(to_replace=['ELD','ELD 1', 'ELD 2', 'ELD 3', 'ELD 4', 'ELD 5', 'OTH'], value=[1, 1, 1, 1, 1, 1, 0])
 
 
 # cleaning data
@@ -137,7 +137,7 @@ student_testing_data['Description_HL'] = student_testing_data['Description_HL'].
 # vectorizing ELD
 student_testing_data.loc[~student_testing_data['Group Memberships?'].isin(members_allowed_values), 'Group Memberships?'] = 'OTH'
 
-student_testing_data['Group Memberships?'] = student_testing_data['Group Memberships?'].replace(to_replace=['ELD 1', 'ELD 2', 'ELD 3', 'ELD 4', 'ELD 5', 'OTH'], value=[1, 1, 1, 1, 1, 0])
+student_testing_data['Group Memberships?'] = student_testing_data['Group Memberships?'].replace(to_replace=['ELD','ELD 1', 'ELD 2', 'ELD 3', 'ELD 4', 'ELD 5', 'OTH'], value=[1,1, 1, 1, 1, 1, 0])
 
 # cleaning data
 student_testing_data.drop(student_testing_data.columns.difference(['Last Schl', 'Gender','Description_HL', 'Group Memberships?', 'POD GROUP']), axis=1, inplace=True)
@@ -231,7 +231,6 @@ random.shuffle(other_group_name)
 
 
 
-
 extra_english_students = []
 extra_spanish_students = []
 extra_mandarin_students = []
@@ -247,7 +246,7 @@ def group_students(student_dictionary, group_name, total_students, group_number,
             
             student_dictionary["Group {0}".format(group_number)] = group_name[i:j]
 
-            if len(student_dictionary["Group {0}".format(group_number)]) < 10:
+            if len(student_dictionary["Group {0}".format(group_number)]) < 10 and len(student_dictionary) > 1:
                 extra_students.append(student_dictionary["Group {0}".format(group_number)])
                 student_dictionary.pop("Group {0}".format(group_number))
 
@@ -281,8 +280,6 @@ print("\nSpanish Groups EXTRA: \n", extra_spanish_students)
 print("\nMandarin Groups EXTRA: \n", extra_mandarin_students)
 print("\nOther Groups EXTRA: \n", extra_other_students)
 
-
-
 def add_extra_students(student_dictionary, extra_students, group_number, total_pods):
     #takes the extra people from each language group 
     #and adds them to the already existing groups (has to be in the same language group tho)
@@ -292,7 +289,7 @@ def add_extra_students(student_dictionary, extra_students, group_number, total_p
     if len(extra_students) > 0:
         count = len(extra_students[0])
         while count != 0:
-            if group_number > total_pods:
+            if (group_number - starting_group_number) == total_pods:
                 group_number = starting_group_number
 
             student_dictionary["Group {0}".format(group_number)].append(extra_students[0][i])
@@ -326,7 +323,12 @@ add_extra_students(mandarin_student_dictionary, extra_mandarin_students, group_n
 print("\nMandarin Groups: \n", mandarin_student_dictionary)
 print("\nMandarin Groups EXTRA: \n", extra_mandarin_students)
 
+group_number += len(mandarin_student_dictionary)
+total_other_pod_groups = len(other_student_dictionary)
+add_extra_students(other_student_dictionary, extra_other_students, group_number, total_other_pod_groups)
 
+print("\nOther Groups: \n", other_student_dictionary)
+print("\nOther Groups EXTRA: \n", extra_other_students)
 
 
 # FINALIZING POD GROUPS
