@@ -61,7 +61,73 @@ class PodAdmin(admin.ModelAdmin):
 
     def create_pod(self, request):
         if request.method == "POST":
-            new_model = tf.keras.models.load_model('student_model')
+
+            # NORMALIZING TRAINING DATA
+            #---------------------------------------------------------------------
+            file_path_train = 'training_data.csv'
+
+            student_train_data = pd.read_csv(file_path_train)
+
+            student_training_data = student_train_data.copy()
+
+            # vectorizing Gender
+            gender_allowed_values = ['M', 'F']
+            student_training_data.loc[~student_training_data['Gender'].isin(gender_allowed_values), 'Gender'] = 'OTH'
+
+            student_training_data['Gender'] = student_training_data['Gender'].replace(to_replace=['M', 'F', 'OTH'], value=[1, 2, 0])
+
+            # vectorizing Language
+            languages_allowed_values = ['English', 'Spanish', 'Mandarin']
+            student_training_data.loc[~student_training_data['Description_HL'].isin(languages_allowed_values), 'Description_HL'] = 'OTH'
+
+            student_training_data['Description_HL'] = student_training_data['Description_HL'].replace(to_replace=['English', 'Spanish', 'Mandarin', 'OTH'], value=[1, 2, 3, 0])
+
+            # vectorizing if in ELD
+            members_allowed_values = ['ELD 1', 'ELD 2', 'ELD 3', 'ELD 4', 'ELD 5'] #how many ELD groups are there?
+            student_training_data.loc[~student_training_data['Group Memberships?'].isin(members_allowed_values), 'Group Memberships?'] = 'OTH'
+            student_training_data['Group Memberships?'] = student_training_data['Group Memberships?'].replace(to_replace=['ELD 1', 'ELD 2', 'ELD 3', 'ELD 4', 'ELD 5', 'OTH'], value=[1, 1, 1, 1, 1, 0])
+
+
+            # cleaning data
+            student_training_data.drop(student_training_data.columns.difference(['Last Schl', 'Gender','Description_HL', 'Group Memberships?', 'POD GROUP']), axis=1, inplace=True)
+
+            #print("\nModified Training Data: ")
+            #print(student_training_data)
+
+
+
+
+            # BUILDING TRAINING MODEL
+            #---------------------------------------------------------------------
+            student_training_labels = student_training_data.pop('POD GROUP')
+
+            student_training_data = np.array(student_training_data)
+
+            def create_model():
+                student_model = tf.keras.Sequential([
+                    tf.keras.layers.InputLayer(input_shape=(4,)),
+                    tf.keras.layers.Dense(256, activation='relu'),
+                    tf.keras.layers.Dropout(0.2),
+                    tf.keras.layers.Dense(256, activation='relu'),
+                    tf.keras.layers.Dropout(0.2),
+                    tf.keras.layers.Dense(256, activation='relu'),
+                    tf.keras.layers.Dropout(0.2),
+                    tf.keras.layers.Dense(1, activation='linear') 
+                ])
+                student_model.compile(loss=tf.losses.MeanSquaredError(),
+                                optimizer= tf.optimizers.Adam())
+
+                return student_model
+
+            student_model = create_model()
+            student_model.summary()
+
+                                
+
+            #student_training_data = np.asarray(student_training_data).astype('float32')
+            tf.convert_to_tensor(student_training_data)
+
+            student_model.fit(student_training_data, student_training_labels, epochs=50)
 
             # NORMALIZING TESTING DATA
             #---------------------------------------------------------------------
@@ -103,19 +169,19 @@ class PodAdmin(admin.ModelAdmin):
             student_testing_data = np.array(student_testing_data)
 
 
-            #print("\nTesting model: ")
+            print("\nTesting model: ")
 
-            new_model.evaluate(student_testing_data, student_testing_labels, verbose=1)
+            student_model.evaluate(student_testing_data, student_testing_labels, verbose=1)
 
-            student_testing_labels = new_model.predict(student_testing_data)
-
-
-            #print("\nData: \n{}".format(student_testing_data))
-            #print('\nNot ELD: 0, ELD: 1') 
+            student_testing_labels = student_model.predict(student_testing_data)
 
 
-            #print("\nPod Group # Predictions (Not rounded): \n{}".format(abs(student_testing_labels)))
-            #print('\nEnglish Group: 0, Spanish Group: 1, Mandarin Group: 2, Other Group: 3') 
+            print("\nData: \n{}".format(student_testing_data))
+            print('\nNot ELD: 0, ELD: 1') 
+
+
+            print("\nPod Group # Predictions (Not rounded): \n{}".format(abs(student_testing_labels)))
+            print('\nEnglish Group: 0, Spanish Group: 1, Mandarin Group: 2, Other Group: 3') 
 
             # CREATING POD GROUPS
             #---------------------------------------------------------------------
@@ -125,7 +191,7 @@ class PodAdmin(admin.ModelAdmin):
             predictions = abs(student_testing_labels.round())
             student_final_data['POD GROUP'] = predictions
 
-            #print(student_final_data)
+            print(student_final_data)
 
             # adding students to dictionary
             student_dictionary = student_final_data.to_dict(orient="index")
@@ -180,33 +246,92 @@ class PodAdmin(admin.ModelAdmin):
             random.shuffle(mandarin_group_name)
             random.shuffle(other_group_name)
 
-            def group_students(student_dictionary, group_name, total_students, group_number):
+            extra_english_students = []
+            extra_spanish_students = []
+            extra_mandarin_students = []
+            extra_other_students = []
+
+            def group_students(student_dictionary, group_name, total_students, group_number, extra_students):
+                #if the group has less than 10 people put them in a seperate array -- different extra arrays for each language group
                 i = 0
 
                 while total_students != i:
                     if i == 0 or i % 12 == 0:
                         j = i + 12
+                        
                         student_dictionary["Group {0}".format(group_number)] = group_name[i:j]
+
+                        if len(student_dictionary["Group {0}".format(group_number)]) < 10 and len(student_dictionary) > 1:
+                            extra_students.append(student_dictionary["Group {0}".format(group_number)])
+                            student_dictionary.pop("Group {0}".format(group_number))
+
                         group_number += 1
 
                     i += 1
 
                 return student_dictionary
 
+
             group_number = 1
-            group_students(english_student_dictionary, english_group_name, total_english_students, group_number)
-            group_number += total_english_pod_groups
-            group_students(spanish_student_dictionary, spanish_group_name, total_spanish_students, group_number)
-            group_number += total_spanish_pod_groups
-            group_students(mandarin_student_dictionary, mandarin_group_name, total_mandarin_students, group_number)
-            group_number += total_mandarin_pod_groups
-            group_students(other_student_dictionary, other_group_name, total_other_students, group_number)
+            group_students(english_student_dictionary, english_group_name, total_english_students, group_number,extra_english_students)
+
+            group_number += len(english_student_dictionary)
+            group_students(spanish_student_dictionary, spanish_group_name, total_spanish_students, group_number,extra_spanish_students)
+
+            group_number += len(spanish_student_dictionary)
+            group_students(mandarin_student_dictionary, mandarin_group_name, total_mandarin_students, group_number,extra_mandarin_students)
+
+            group_number += len(mandarin_student_dictionary)
+            group_students(other_student_dictionary, other_group_name, total_other_students, group_number,extra_other_students)
 
 
-            #print("\nEnglish Groups: \n", english_student_dictionary)
-            #print("\nSpanish Groups: \n", spanish_student_dictionary)
-            #print("\nMandarin Groups: \n", mandarin_student_dictionary)
-            #print("\nOther Groups: \n", other_student_dictionary)
+            print("\nEnglish Groups: \n", english_student_dictionary)
+            print("\nSpanish Groups: \n", spanish_student_dictionary)
+            print("\nMandarin Groups: \n", mandarin_student_dictionary)
+            print("\nOther Groups: \n", other_student_dictionary)
+
+            print("\nEnglish Groups EXTRA: \n", extra_english_students)
+            print("\nSpanish Groups EXTRA: \n", extra_spanish_students)
+            print("\nMandarin Groups EXTRA: \n", extra_mandarin_students)
+            print("\nOther Groups EXTRA: \n", extra_other_students)
+
+            def add_extra_students(student_dictionary, extra_students, group_number, total_pods):
+                #takes the extra people from each language group 
+                #and adds them to the already existing groups (has to be in the same language group tho)
+                #looping from the start until all extra people are gone
+                i = 0
+                starting_group_number = group_number
+                if len(extra_students) > 0:
+                    count = len(extra_students[0])
+                    while count != 0:
+                        if group_number > total_pods:
+                            group_number = starting_group_number
+
+                        student_dictionary["Group {0}".format(group_number)].append(extra_students[0][i])
+                        i += 1
+                        group_number += 1
+                        count -= 1
+                
+
+                
+                return student_dictionary
+
+
+            group_number = 1
+            total_english_pod_groups = len(english_student_dictionary)
+            add_extra_students(english_student_dictionary, extra_english_students, group_number, total_english_pod_groups)
+
+            print("\nEnglish Groups: \n", english_student_dictionary)
+            print("\nEnglish Groups EXTRA: \n", extra_english_students)
+
+            group_number += len(english_student_dictionary)
+            total_spanish_pod_groups = len(spanish_student_dictionary)
+            add_extra_students(spanish_student_dictionary, extra_spanish_students, group_number, total_spanish_pod_groups)
+
+            print("\nSpanish Groups: \n", spanish_student_dictionary)
+            print("\nSpanish Groups EXTRA: \n", extra_spanish_students)
+
+            
 
 
             # FINALIZING POD GROUPS

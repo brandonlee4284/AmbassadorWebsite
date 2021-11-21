@@ -116,7 +116,7 @@ student_model.summary()
 #student_training_data = np.asarray(student_training_data).astype('float32')
 tf.convert_to_tensor(student_training_data)
 
-student_model.fit(student_training_data, student_training_labels, epochs=250)
+student_model.fit(student_training_data, student_training_labels, epochs=50)
 
 
 # NORMALIZING TESTING DATA
@@ -229,33 +229,104 @@ random.shuffle(spanish_group_name)
 random.shuffle(mandarin_group_name)
 random.shuffle(other_group_name)
 
-def group_students(student_dictionary, group_name, total_students, group_number):
+
+
+
+extra_english_students = []
+extra_spanish_students = []
+extra_mandarin_students = []
+extra_other_students = []
+
+def group_students(student_dictionary, group_name, total_students, group_number, extra_students):
+    #if the group has less than 10 people put them in a seperate array -- different extra arrays for each language group
     i = 0
 
     while total_students != i:
         if i == 0 or i % 12 == 0:
             j = i + 12
+            
             student_dictionary["Group {0}".format(group_number)] = group_name[i:j]
+
+            if len(student_dictionary["Group {0}".format(group_number)]) < 10:
+                extra_students.append(student_dictionary["Group {0}".format(group_number)])
+                student_dictionary.pop("Group {0}".format(group_number))
+
             group_number += 1
 
         i += 1
 
     return student_dictionary
 
+
 group_number = 1
-group_students(english_student_dictionary, english_group_name, total_english_students, group_number)
-group_number += total_english_pod_groups
-group_students(spanish_student_dictionary, spanish_group_name, total_spanish_students, group_number)
-group_number += total_spanish_pod_groups
-group_students(mandarin_student_dictionary, mandarin_group_name, total_mandarin_students, group_number)
-group_number += total_mandarin_pod_groups
-group_students(other_student_dictionary, other_group_name, total_other_students, group_number)
+group_students(english_student_dictionary, english_group_name, total_english_students, group_number,extra_english_students)
+
+group_number += len(english_student_dictionary)
+group_students(spanish_student_dictionary, spanish_group_name, total_spanish_students, group_number,extra_spanish_students)
+
+group_number += len(spanish_student_dictionary)
+group_students(mandarin_student_dictionary, mandarin_group_name, total_mandarin_students, group_number,extra_mandarin_students)
+
+group_number += len(mandarin_student_dictionary)
+group_students(other_student_dictionary, other_group_name, total_other_students, group_number,extra_other_students)
 
 
-#print("\nEnglish Groups: \n", english_student_dictionary)
-#print("\nSpanish Groups: \n", spanish_student_dictionary)
-#print("\nMandarin Groups: \n", mandarin_student_dictionary)
-#print("\nOther Groups: \n", other_student_dictionary)
+print("\nEnglish Groups: \n", english_student_dictionary)
+print("\nSpanish Groups: \n", spanish_student_dictionary)
+print("\nMandarin Groups: \n", mandarin_student_dictionary)
+print("\nOther Groups: \n", other_student_dictionary)
+
+print("\nEnglish Groups EXTRA: \n", extra_english_students)
+print("\nSpanish Groups EXTRA: \n", extra_spanish_students)
+print("\nMandarin Groups EXTRA: \n", extra_mandarin_students)
+print("\nOther Groups EXTRA: \n", extra_other_students)
+
+
+
+def add_extra_students(student_dictionary, extra_students, group_number, total_pods):
+    #takes the extra people from each language group 
+    #and adds them to the already existing groups (has to be in the same language group tho)
+    #looping from the start until all extra people are gone
+    i = 0
+    starting_group_number = group_number
+    if len(extra_students) > 0:
+        count = len(extra_students[0])
+        while count != 0:
+            if group_number > total_pods:
+                group_number = starting_group_number
+
+            student_dictionary["Group {0}".format(group_number)].append(extra_students[0][i])
+            i += 1
+            group_number += 1
+            count -= 1
+    
+
+    
+    return student_dictionary
+
+
+group_number = 1
+total_english_pod_groups = len(english_student_dictionary)
+add_extra_students(english_student_dictionary, extra_english_students, group_number, total_english_pod_groups)
+
+print("\nEnglish Groups: \n", english_student_dictionary)
+print("\nEnglish Groups EXTRA: \n", extra_english_students)
+
+group_number += len(english_student_dictionary)
+total_spanish_pod_groups = len(spanish_student_dictionary)
+add_extra_students(spanish_student_dictionary, extra_spanish_students, group_number, total_spanish_pod_groups)
+
+print("\nSpanish Groups: \n", spanish_student_dictionary)
+print("\nSpanish Groups EXTRA: \n", extra_spanish_students)
+
+group_number += len(spanish_student_dictionary)
+total_mandarin_pod_groups = len(mandarin_student_dictionary)
+add_extra_students(mandarin_student_dictionary, extra_mandarin_students, group_number, total_mandarin_pod_groups)
+
+print("\nMandarin Groups: \n", mandarin_student_dictionary)
+print("\nMandarin Groups EXTRA: \n", extra_mandarin_students)
+
+
 
 
 # FINALIZING POD GROUPS

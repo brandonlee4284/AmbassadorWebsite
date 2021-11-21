@@ -6,6 +6,8 @@
             {{ form.as_p }}
             {% csrf_token %}
             <br>
+            <p>NOTE: Make sure the first line in the CSV matches with the following:</p>
+            <p>Student ID,Last Schl,Last Name,First Name,Gender,Parent/guardian,Primary Phone,Description_HL,Group Memberships?,POD GROUP</p>
             <button type="submit">Upload File</button>
         </form>
     </div>

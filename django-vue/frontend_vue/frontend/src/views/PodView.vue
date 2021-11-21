@@ -3,7 +3,7 @@
     <div class="album py-5 bg-light">
       <div class="container">
         <div class="row">
-          <div v-for="pod in APIData.slice(0,1)" :key="pod.id" class="col-md-4">
+          <div v-for="pod in APIData" :key="pod.id" class="col-md-4">
             <h1>{{pod.pod_group_number}}</h1>
             <h3>{{pod.pod_leader}}</h3>
             <p>Room: {{pod.pod_room_number}}</p>
