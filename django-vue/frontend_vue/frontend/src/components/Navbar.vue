@@ -8,7 +8,7 @@
         <div><a><img src="https://avatars.githubusercontent.com/u/10067543?s=280&v=4" alt="mvhs-logo" width = "30" height = "30"></a></div>
       
       </span>
-      <span v-else><a><img src="https://mvhs.mvla.net/images/logo.png" alt="mvhs-logo" width = "160" height = "80"></a></span>
+      <span v-else><a><img src="https://mvhs.mvla.net/images/logo.png" alt="" width = "160" height = "80"></a></span>
     </h1>
 
     <div v-if="accessToken!=null">
