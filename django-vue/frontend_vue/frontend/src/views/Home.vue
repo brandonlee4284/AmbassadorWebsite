@@ -3,12 +3,11 @@
        <div class="album py-5 bg-light">
         <div class="container">
             <h1><i class="fas fa-calendar-alt" style="font-size:32px"></i> Upcoming Events</h1>
+            
             <!--<div v-for="homeImage in APIData1" :key="homeImage.id" class="col-md-6">
-              
-              {{homeImage.url_of_image}}
-              {{homeImage.image_name}}
-              {{homeImage.image_redirect}}
-             
+              <a :href="homeImage.image_redirect" target="_blank">
+                <img :src="homeImage.url_of_image" :alt="homeImage.image_name" class="responsive" width="500" height="300">
+              </a>
             </div>-->
 
          
@@ -63,16 +62,6 @@ export default {
     getAPI.get('/home/', { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } })
       .then(response => {
         this.$store.state.APIData = response.data.slice().reverse()
-      })
-      .catch(err => {
-        console.log(err)
-      })
-
-     
-     getAPI.get('/homeImage/', { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } })
-      .then(response => {
-        this.$store.state.APIData1 = response.data
-        
       })
       .catch(err => {
         console.log(err)

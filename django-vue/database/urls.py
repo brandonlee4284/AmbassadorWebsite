@@ -1,5 +1,5 @@
 from django.urls import path
-from . views import PodView, HomeView, ResourceView, ScheduleView, HomeImageView
+from . views import PodView, HomeView, ResourceView, ScheduleView
 from rest_framework_simplejwt.views import (TokenObtainPairView,TokenRefreshView)
 
 
@@ -10,5 +10,4 @@ urlpatterns = [
     path('home/', HomeView.as_view(), name='home_view'),
     path('resources/', ResourceView.as_view(), name='resources_view'),
     path('schedule/', ScheduleView.as_view(), name='schedule_view'),
-    path('homeImage/', HomeImageView.as_view(), name='homeImage_view'),
 ]

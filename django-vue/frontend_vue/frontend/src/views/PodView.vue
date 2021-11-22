@@ -3,6 +3,19 @@
     <div class="album py-5 bg-light">
       <div class="container">
         <div class="row">
+          <!--
+            if a Pod (i) button is pressed
+              show pod in APIData.slice(i,i+1)
+
+            const element = document.getElementById('profile_title')
+
+            // always checking if the element is clicked, if so, do alert('hello')
+            element.addEventListener("click", () => {
+              alert('hello');
+            });
+
+
+          -->
           <div v-for="pod in APIData" :key="pod.id" class="col-md-4">
             <h1>{{pod.pod_group_number}}</h1>
             <h3>{{pod.pod_leader}}</h3>

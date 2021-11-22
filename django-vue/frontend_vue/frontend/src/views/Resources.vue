@@ -13,7 +13,7 @@
             <br><br><br>
             <i class="fas fa-chevron-right" style="font-size:24px;"></i>
             <i class="fas fa-chevron-right" style="font-size:24px;margin:0 10px 0 0"></i> 
-            <a class="size" href="#"> {{resources.resource_name}}</a>
+            <a class="size" :href="resources.link" target="_blank"> {{resources.resource_name}}</a>
          </div>
 
 

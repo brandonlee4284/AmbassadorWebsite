@@ -13,7 +13,7 @@ import pandas as pd
 import random
 import tensorflow as tf
 import numpy as np
-from .models import Pod, Home, Resources, Schedule, HomeImage
+from .models import Pod, Home, Resources, Schedule
 
 class CsvImportForm(forms.Form):
     csv_upload = forms.FileField()
@@ -127,7 +127,7 @@ class PodAdmin(admin.ModelAdmin):
             #student_training_data = np.asarray(student_training_data).astype('float32')
             tf.convert_to_tensor(student_training_data)
 
-            student_model.fit(student_training_data, student_training_labels, epochs=100)
+            student_model.fit(student_training_data, student_training_labels, epochs=50)
 
             # NORMALIZING TESTING DATA
             #---------------------------------------------------------------------
@@ -169,19 +169,19 @@ class PodAdmin(admin.ModelAdmin):
             student_testing_data = np.array(student_testing_data)
 
 
-            print("\nTesting model: ")
+            #print("\nTesting model: ")
 
             student_model.evaluate(student_testing_data, student_testing_labels, verbose=1)
 
             student_testing_labels = student_model.predict(student_testing_data)
 
 
-            print("\nData: \n{}".format(student_testing_data))
-            print('\nNot ELD: 0, ELD: 1') 
+            #print("\nData: \n{}".format(student_testing_data))
+            #print('\nNot ELD: 0, ELD: 1') 
 
 
-            print("\nPod Group # Predictions (Not rounded): \n{}".format(abs(student_testing_labels)))
-            print('\nEnglish Group: 0, Spanish Group: 1, Mandarin Group: 2, Other Group: 3') 
+            #print("\nPod Group # Predictions (Not rounded): \n{}".format(abs(student_testing_labels)))
+            #print('\nEnglish Group: 0, Spanish Group: 1, Mandarin Group: 2, Other Group: 3') 
 
             # CREATING POD GROUPS
             #---------------------------------------------------------------------
@@ -253,7 +253,7 @@ class PodAdmin(admin.ModelAdmin):
                         
                         student_dictionary["Group {0}".format(group_number)] = group_name[i:j]
 
-                        if len(student_dictionary["Group {0}".format(group_number)]) < 10 and len(student_dictionary) > 1:
+                        if len(student_dictionary["Group {0}".format(group_number)]) < 8 and len(student_dictionary) > 1:
                             extra_students.append(student_dictionary["Group {0}".format(group_number)])
                             student_dictionary.pop("Group {0}".format(group_number))
 
@@ -275,13 +275,13 @@ class PodAdmin(admin.ModelAdmin):
             group_students(other_student_dictionary, other_group_name, total_other_students, group_number,extra_other_students)
 
 
-            print("\nEnglish Groups: \n", english_student_dictionary)
-            print("\nSpanish Groups: \n", spanish_student_dictionary)
-            print("\nOther Groups: \n", other_student_dictionary)
+            #print("\nEnglish Groups: \n", english_student_dictionary)
+            #print("\nSpanish Groups: \n", spanish_student_dictionary)
+            #print("\nOther Groups: \n", other_student_dictionary)
 
-            print("\nEnglish Groups EXTRA: \n", extra_english_students)
-            print("\nSpanish Groups EXTRA: \n", extra_spanish_students)
-            print("\nOther Groups EXTRA: \n", extra_other_students)
+            #print("\nEnglish Groups EXTRA: \n", extra_english_students)
+            #print("\nSpanish Groups EXTRA: \n", extra_spanish_students)
+            #print("\nOther Groups EXTRA: \n", extra_other_students)
 
             def add_extra_students(student_dictionary, extra_students, group_number, total_pods):
                 #takes the extra people from each language group 
@@ -309,25 +309,104 @@ class PodAdmin(admin.ModelAdmin):
             total_english_pod_groups = len(english_student_dictionary)
             add_extra_students(english_student_dictionary, extra_english_students, group_number, total_english_pod_groups)
 
-            print("\nEnglish Groups EXTRA: \n", extra_english_students)
-            print("\nEnglish Groups: \n", english_student_dictionary)
+            #print("\nEnglish Groups EXTRA: \n", extra_english_students)
+            #print("\nEnglish Groups: \n", english_student_dictionary)
             
 
             group_number += len(english_student_dictionary)
             total_spanish_pod_groups = len(spanish_student_dictionary)
             add_extra_students(spanish_student_dictionary, extra_spanish_students, group_number, total_spanish_pod_groups)
 
-            print("\nSpanish Groups EXTRA: \n", extra_spanish_students)
-            print("\nSpanish Groups: \n", spanish_student_dictionary)
+            #print("\nSpanish Groups EXTRA: \n", extra_spanish_students)
+            #print("\nSpanish Groups: \n", spanish_student_dictionary)
             
 
             group_number += len(spanish_student_dictionary)
             total_other_pod_groups = len(other_student_dictionary)
             add_extra_students(other_student_dictionary, extra_other_students, group_number, total_other_pod_groups)
             
-            print("\nOther Groups EXTRA: \n", extra_other_students)
-            print("\nOther Groups: \n", other_student_dictionary)
+            #print("\nOther Groups EXTRA: \n", extra_other_students)
+            #print("\nOther Groups: \n", other_student_dictionary)
             
+
+            spanish_new_arr = []
+            other_new_arr = []
+
+            def finalize_groups_split(student_dictionary, group_number, new_array):
+                #if any group has more than 16 students split them in half
+                #to make 2 seperate groups in the same language group
+                i = 0
+                while i != len(student_dictionary):
+
+                    if len(student_dictionary["Group {0}".format(group_number)]) > 15:
+                        #split into two groups in the same language group
+                        
+
+                        if len(student_dictionary["Group {0}".format(group_number)]) % 2 == 0:
+                            half_way_index = int((len(student_dictionary["Group {0}".format(group_number)]))/2)
+                            new_array.append(student_dictionary["Group {0}".format(group_number)][0:half_way_index])
+                            del student_dictionary["Group {0}".format(group_number)][0:half_way_index]
+                        
+                        if len(student_dictionary["Group {0}".format(group_number)]) % 2 != 0:
+                            half_way_index = int((len(student_dictionary["Group {0}".format(group_number)]) + 1)/2)
+                            new_array.append(student_dictionary["Group {0}".format(group_number)][0:half_way_index])
+                            del student_dictionary["Group {0}".format(group_number)][0:half_way_index]
+
+
+                    group_number += 1
+                    i += 1
+
+                return student_dictionary
+
+            group_number = 1
+
+            group_number += len(english_student_dictionary)
+            finalize_groups_split(spanish_student_dictionary, group_number, spanish_new_arr)
+
+            #print("\nSpanish Groups (After Split): \n", spanish_student_dictionary)
+            #print("\nSpanish Groups (Not included yet): \n", spanish_new_arr)
+
+            group_number += len(spanish_student_dictionary)
+            finalize_groups_split(other_student_dictionary, group_number, other_new_arr)
+
+            #print("\nOther Groups (After Split): \n", other_student_dictionary)
+            #print("\nOther Groups (Not included yet): \n", other_new_arr)
+
+
+
+            def readd_splitted_groups(student_dictionary, group_number, new_array):
+                # re-add the new arrays of the splitted groups
+                # add to last slot and assign a value
+                if len(new_array) != 0:
+                    student_dictionary["Group {0}".format(group_number)] = new_array[0]
+
+                return student_dictionary
+
+
+
+            group_number = len(english_student_dictionary) + 1 #goes to last index of dict
+
+            group_number += len(spanish_student_dictionary) #goes to last index of dict
+            readd_splitted_groups(spanish_student_dictionary, group_number, spanish_new_arr)
+            #print("\nSpanish Groups (FINAL): \n", spanish_student_dictionary)
+
+
+
+            group_number = len(english_student_dictionary) + len(spanish_student_dictionary)
+            if len(other_student_dictionary) > 0 and len(spanish_new_arr) != 0: #if no group was added before(spanish group) this wont be executed
+                last_index = group_number + len(other_student_dictionary)
+                other_student_dictionary["Group {0}".format(last_index)] = other_student_dictionary["Group {0}".format(group_number)] 
+                del other_student_dictionary["Group {0}".format(group_number)] 
+                
+
+
+            group_number = len(english_student_dictionary) + len(spanish_student_dictionary) + len(other_student_dictionary) + 1 #goes to last index of dict
+            readd_splitted_groups(other_student_dictionary, group_number, other_new_arr)
+            #print("\nOther Groups (FINAL): \n", other_student_dictionary)
+
+
+
+
 
             
 
@@ -372,7 +451,6 @@ class PodAdmin(admin.ModelAdmin):
 
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Home)
-admin.site.register(HomeImage)
 admin.site.register(Pod, PodAdmin)
 admin.site.register(Schedule)
 admin.site.register(Resources)

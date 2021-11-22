@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Pod, Schedule, Home, Resources, HomeImage
+from .models import Pod, Schedule, Home, Resources
 
 
 class PodSerializer(serializers.ModelSerializer):
@@ -22,7 +22,4 @@ class ResourcesSerializer(serializers.ModelSerializer):
         model = Resources
         fields = '__all__'
 
-class HomeImageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = HomeImage
-        fields = '__all__'
+
