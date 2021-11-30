@@ -26,18 +26,25 @@
             <div v-for="pod in APIData" :key="pod.id" class="col-md-4">
               <div class="card mb-4 box-shadow">
               <router-link :to = "{ name:'pod-view' }" exact @click="scrollToTop()">
-                <img class="card-img-top" src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80" alt="Card image cap">
+                <img class="card-img-top" src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80" alt="Card image cap" @click="getPod(pod.pod_group_number)">
               </router-link>
                 <div class="card-body">
-                    <h4><a><router-link :to = "{ name:'pod-view' }" exact class="text-secondary">{{pod.pod_group_number}}</router-link></a></h4>
+                    <h4><a><router-link :to = "{ name:'pod-view' }" exact class="text-secondary" @click="getPod(pod.pod_group_number)">
+                      {{pod.pod_group_number}}
+                    </router-link></a></h4>
                     <p class="card-text">{{pod.pod_leader}}</p>
                     <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                    <a href="" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true">
-                      <router-link :to = "{ name:'pod-view' }" exact>Members</router-link>
-                    </a>
+
                     
+                    <div class="btn-group" >
+                     <a class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true">
+                        <router-link :to = "{ name:'pod-view' }" exact :id="pod.pod_group_number" @click="getPod(pod.pod_group_number)">
+                          Members
+                        </router-link>
+                      </a>                 
                     </div>
+
+
                     <small class="text-muted">Room {{pod.pod_room_number}}</small>
                   </div>
                 </div>
@@ -53,6 +60,7 @@
 <script>
   import { getAPI } from '../axios-api'
   import { mapState } from 'vuex'
+  
   export default {
     name: 'Pods',
     mounted() {
@@ -72,12 +80,26 @@
     scrollToTop() {
       window.scrollTo(0,0);
     },
-    getPodNumber(){
-      
-    }
+    getPod(pod_group_number){
+      for(let i=0;i<this.$store.state.APIData.length;i++){
+        if(this.$store.state.APIData[i].pod_group_number == pod_group_number){
+          console.log(this.$store.state.APIData[i])
+          console.log(document.getElementById(pod_group_number).id.substring(4, 5));
+          console.log(document.getElementById(pod_group_number).id);
+          
+          
+        }
+        
+      }
+    },
+  
+    
+    
     
   }
+  
   }
+ 
 </script>
 
 <style scoped>
