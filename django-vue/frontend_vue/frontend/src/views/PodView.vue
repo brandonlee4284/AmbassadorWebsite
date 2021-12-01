@@ -6,22 +6,14 @@
           <!--
             if a Pod (i) button is pressed
               show pod in APIData.slice(i,i+1)
-
-            const element = document.getElementById('profile_title')
-
-            // always checking if the element is clicked, if so, do alert('hello')
-            element.addEventListener("click", () => {
-              alert('hello');
-            });
-
-
           -->
-          <div v-for="pod in APIData.slice(0,1)" :key="pod.id" class="col-md-4">
-            <h1>{{pod.pod_group_number}}</h1>
-            <h3>{{pod.pod_leader}}</h3>
-            <p>Room: {{pod.pod_room_number}}</p>
-            <p>{{pod.pod_group_members}}</p>
-            
+          <div v-for="pod in APIData.slice(pod_number-1,pod_number)" :key="pod.id" class="">
+            <h1 class="center" style="margin:2vw 0 6vw 0">{{pod.pod_group_number}}</h1>
+            <h5><b>Pod Leader(s):</b> {{pod.pod_leader}}</h5>
+            <p><b>Room:</b> {{pod.pod_room_number}}</p>
+            <p><b>Members:</b> {{pod.pod_group_members}}</p>
+            <p><b>Additional Notes:</b> {{pod.additional_notes}}</p>
+            <br><br><br><br><br><br>
           </div>
         </div>
       </div>
@@ -33,10 +25,14 @@
 <script>
 import { getAPI } from '../axios-api'
 import { mapState } from 'vuex'
+import { pod_number } from './Pods.vue'
 export default {
   name: 'PodView',
-  
-  
+  setup() {
+    window.scrollTo(0,0);
+    return { pod_number }
+    
+  },
   mounted() {
   document.title = 'Pod View'
   },
@@ -45,14 +41,17 @@ export default {
       getAPI.get('/pod/', { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } })
         .then(response => {
           this.$store.state.APIData = response.data
+          this.pod_number = pod_number
+          //console.log(pod_number)
         })
         .catch(err => {
           console.log(err)
         })
   },
   method: {
-    
-    
+    getPod(){
+      return pod_number;
+    },
   },
 
   
@@ -60,6 +59,9 @@ export default {
 </script>
 
 <style scoped>
+.center{
+  text-align: center;
+}
 
 
 </style>

@@ -25,11 +25,11 @@
             
             <div v-for="pod in APIData" :key="pod.id" class="col-md-4">
               <div class="card mb-4 box-shadow">
-              <router-link :to = "{ name:'pod-view' }" exact @click="scrollToTop()">
-                <img class="card-img-top" src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80" alt="Card image cap" @click="getPod(pod.pod_group_number)">
+              <router-link :to = "{ name:'pod-view' }" exact>
+                <img class="card-img-top" src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80" alt="Card image cap" @click="getNumber(pod.pod_group_number)">
               </router-link>
                 <div class="card-body">
-                    <h4><a><router-link :to = "{ name:'pod-view' }" exact class="text-secondary" @click="getPod(pod.pod_group_number)">
+                    <h4><a><router-link :to = "{ name:'pod-view' }" exact class="text-secondary" @click="getNumber(pod.pod_group_number)">
                       {{pod.pod_group_number}}
                     </router-link></a></h4>
                     <p class="card-text">{{pod.pod_leader}}</p>
@@ -38,7 +38,7 @@
                     
                     <div class="btn-group" >
                      <a class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true">
-                        <router-link :to = "{ name:'pod-view' }" exact :id="pod.pod_group_number" @click="getPod(pod.pod_group_number)">
+                        <router-link :to = "{ name:'pod-view' }" exact :id="pod.pod_group_number" @click="getNumber(pod.pod_group_number)">
                           Members
                         </router-link>
                       </a>                 
@@ -60,7 +60,7 @@
 <script>
   import { getAPI } from '../axios-api'
   import { mapState } from 'vuex'
-  
+  export var pod_number;
   export default {
     name: 'Pods',
     mounted() {
@@ -84,7 +84,7 @@
       for(let i=0;i<this.$store.state.APIData.length;i++){
         if(this.$store.state.APIData[i].pod_group_number == pod_group_number){
           console.log(this.$store.state.APIData[i])
-          console.log(document.getElementById(pod_group_number).id.substring(4, 5));
+          console.log(i+1);
           console.log(document.getElementById(pod_group_number).id);
           
           
@@ -92,6 +92,13 @@
         
       }
     },
+    getNumber(pod_group_number){
+      var pod = document.getElementById(pod_group_number).id.substring(4, );
+      pod_number = parseInt(pod);
+      //console.log(pod_number)
+      return pod_number;
+        
+    }
   
     
     

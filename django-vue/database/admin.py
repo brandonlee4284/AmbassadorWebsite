@@ -206,14 +206,29 @@ class PodAdmin(admin.ModelAdmin):
 
             while len(student_dictionary) != i:
                 if student_dictionary[i]['POD GROUP'] == 0:
-                    english_group_name.append(f"{student_dictionary[i]['First Name']} {student_dictionary[i]['Last Name']} Student ID: {student_dictionary[i]['Student ID']}")
+                    english_group_name.append(
+                        f"{student_dictionary[i]['First Name']} {student_dictionary[i]['Last Name']} \
+                        Student ID: {student_dictionary[i]['Student ID']} \
+                        Gender: {student_dictionary[i]['Gender']} \
+                        Last School: {student_dictionary[i]['Last Schl']} \
+                        Group Memberships: {student_dictionary[i]['Group Memberships?']}")
 
                 if student_dictionary[i]['POD GROUP'] == 1:
-                    spanish_group_name.append(f"{student_dictionary[i]['First Name']} {student_dictionary[i]['Last Name']} Student ID: {student_dictionary[i]['Student ID']}")
+                    spanish_group_name.append(
+                        f"{student_dictionary[i]['First Name']} {student_dictionary[i]['Last Name']} \
+                        Student ID: {student_dictionary[i]['Student ID']} \
+                        Gender: {student_dictionary[i]['Gender']} \
+                        Last School: {student_dictionary[i]['Last Schl']} \
+                        Group Memberships: {student_dictionary[i]['Group Memberships?']}")
 
 
                 if student_dictionary[i]['POD GROUP'] == 3:
-                    other_group_name.append(f"{student_dictionary[i]['First Name']} {student_dictionary[i]['Last Name']} Student ID: {student_dictionary[i]['Student ID']}")
+                    other_group_name.append(
+                        f"{student_dictionary[i]['First Name']} {student_dictionary[i]['Last Name']} \
+                        Student ID: {student_dictionary[i]['Student ID']} \
+                        Gender: {student_dictionary[i]['Gender']} \
+                        Last School: {student_dictionary[i]['Last Schl']} \
+                        Group Memberships: {student_dictionary[i]['Group Memberships?']}")
                     
                 i += 1
 

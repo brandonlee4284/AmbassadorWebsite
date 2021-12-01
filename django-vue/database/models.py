@@ -14,6 +14,7 @@ class Pod(models.Model):
   pod_leader = models.CharField(max_length=100)
   pod_room_number = models.CharField(max_length=10)
   pod_group_members = models.TextField()
+  additional_notes = models.TextField(blank=True)
   
 
   def __str__(self):
