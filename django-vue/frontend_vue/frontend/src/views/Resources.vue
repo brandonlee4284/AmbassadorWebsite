@@ -2,7 +2,7 @@
   <div id="resources">
     <div class="album py-5 bg-light">
     <div class="container">
-        <h1 class=""><i class="fas fa-book" style="font-size:32px"></i> Additional Resources</h1>
+        <h1 style="font-family:Gabriola"><i class="fas fa-book" style="font-size:32px"></i> Additional Resources</h1>
         <br><br><br>
         <i class="fas fa-chevron-right" style="font-size:24px"></i> 
         <i class="fas fa-chevron-right" style="font-size:24px;margin:0 10px 0 0"></i> 

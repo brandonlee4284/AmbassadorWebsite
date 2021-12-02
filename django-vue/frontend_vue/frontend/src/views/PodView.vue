@@ -8,13 +8,25 @@
               show pod in APIData.slice(i,i+1)
           -->
           <div v-for="pod in APIData.slice(pod_number-1,pod_number)" :key="pod.id" class="">
-            <h1 class="center" style="margin:2vw 0 6vw 0">{{pod.pod_group_number}}</h1>
-            <h5><b>Pod Leader(s):</b> {{pod.pod_leader}}</h5>
-            <p><b>Room:</b> {{pod.pod_room_number}}</p>
-            <p><b>Members:</b> {{pod.pod_group_members}}</p>
+            <h1 class="" style="margin:4vw 0 0 0;font-family:Gabriola">{{pod.pod_group_number}}</h1>
+            <p>Room: {{pod.pod_room_number}}</p>
+            <table id="students">
+              <tr>
+                <th>Pod Leader(s)</th>
+                <th>Members</th>
+              </tr>
+              <tr>
+                <td>{{pod.pod_leader}}</td>
+                <div v-for="pod in APIData.slice(pod_number-1,pod_number)" :key="pod.id" class="">
+                  <td>{{pod.pod_group_members}}</td>
+                </div>
+              </tr>
+            </table>
+            <br>
             <p><b>Additional Notes:</b> {{pod.additional_notes}}</p>
-            <br><br><br><br><br><br>
+            <br><br><br><br><br><br><br>
           </div>
+
         </div>
       </div>
     </div>
@@ -62,6 +74,26 @@ export default {
 .center{
   text-align: center;
 }
+#students {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
+#students td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#students tr:nth-child(even){background-color: #f2f2f2;}
+
+#students tr:hover {background-color: #ddd;}
+
+#students th {
+  padding: 12px 20px;
+  text-align: center;
+  background-color: #FFD700;
+  color: black;
+}
 
 </style>

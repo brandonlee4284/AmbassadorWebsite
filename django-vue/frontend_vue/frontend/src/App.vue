@@ -18,7 +18,7 @@
           <a href="https://www.instagram.com/mvambassadors/?hl=en" target="_blank" class="me-4 text-reset">
             <i class="fab fa-instagram"></i>
           </a>
-          <a href="" target="_blank" class="me-4 text-reset">
+          <a href="#" target="_blank" class="me-4 text-reset">
             <i class="fab fa-youtube"></i>
           </a>
         </div>
@@ -72,7 +72,7 @@
               <a><router-link :to = "{ name:'developers' }" class="text-reset">Developers</router-link></a>
             </p>
             <p>
-              <a><router-link :to = "{ name:'log-out' }">Logout</router-link></a>
+              <a><router-link :to = "{ name:'log-out' }" style="color:red">Logout</router-link></a>
               
             </p>
             

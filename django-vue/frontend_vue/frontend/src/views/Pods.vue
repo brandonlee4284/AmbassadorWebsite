@@ -3,7 +3,7 @@
     <div class="album py-5 bg-light">
         <div class="container">
           <div class="row">
-            <h1><i class="fas fa-users"></i> Assigned Pods</h1>
+            <h1 style="font-family:Gabriola"><i class="fas fa-users"></i> Assigned Pods</h1>
             <div>
               <form class="search">
                 <input type="text" placeholder="Search Pod Group.." name="search" style="position:relative;left:-10px">

@@ -2,7 +2,7 @@
     <div id="home" class="">
        <div class="album py-5 bg-light">
         <div class="container">
-            <h1><i class="fas fa-calendar-alt" style="font-size:32px"></i> Upcoming Events</h1>
+            <h1 style="font-family:Gabriola"><i class="fas fa-calendar-alt" style="font-size:32px"></i> Upcoming Events</h1>
             
             <!--<div v-for="homeImage in APIData1" :key="homeImage.id" class="col-md-6">
               <a :href="homeImage.image_redirect" target="_blank">
