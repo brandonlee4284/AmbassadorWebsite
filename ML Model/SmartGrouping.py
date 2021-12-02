@@ -189,13 +189,26 @@ i = 0
 
 while len(student_dictionary) != i:
     if student_dictionary[i]['POD GROUP'] == 0:
-        english_group_name.append(f"{student_dictionary[i]['First Name']} {student_dictionary[i]['Last Name']}")
+        english_group_name.append(
+            f"Student ID: {student_dictionary[i]['Student ID']} "+ \
+            f"Gender: {student_dictionary[i]['Gender']} "+ \
+            f"Last School: {student_dictionary[i]['Last Schl']} "
+            )
 
     if student_dictionary[i]['POD GROUP'] == 1:
-        spanish_group_name.append(f"{student_dictionary[i]['First Name']} {student_dictionary[i]['Last Name']}")
+        spanish_group_name.append(
+            f"Student ID: {student_dictionary[i]['Student ID']} "+ \
+            f"Gender: {student_dictionary[i]['Gender']} "+ \
+            f"Last School: {student_dictionary[i]['Last Schl']} "
+            )
+
 
     if student_dictionary[i]['POD GROUP'] == 3:
-        other_group_name.append(f"{student_dictionary[i]['First Name']} {student_dictionary[i]['Last Name']}")
+        other_group_name.append(
+            f"Student ID: {student_dictionary[i]['Student ID']} "+ \
+            f"Gender: {student_dictionary[i]['Gender']} "+ \
+            f" Last School: {student_dictionary[i]['Last Schl']} "
+            )
         
     i += 1
 
@@ -366,11 +379,11 @@ def readd_splitted_groups(student_dictionary, group_number, new_array):
 
 
 group_number = len(english_student_dictionary) + 1 #goes to last index of dict
-print("\nEnglish Groups (FINAL): \n", english_student_dictionary)
+#print("\nEnglish Groups (FINAL): \n", english_student_dictionary)
 
 group_number += len(spanish_student_dictionary) #goes to last index of dict
 readd_splitted_groups(spanish_student_dictionary, group_number, spanish_new_arr)
-print("\nSpanish Groups (FINAL): \n", spanish_student_dictionary)
+#print("\nSpanish Groups (FINAL): \n", spanish_student_dictionary)
 
 
 
@@ -384,9 +397,7 @@ if len(other_student_dictionary) > 0 and len(spanish_new_arr) != 0: #if no group
 
 group_number = len(english_student_dictionary) + len(spanish_student_dictionary) + len(other_student_dictionary) + 1 #goes to last index of dict
 readd_splitted_groups(other_student_dictionary, group_number, other_new_arr)
-print("\nOther Groups (FINAL): \n", other_student_dictionary)
-
-
+#print("\nOther Groups (FINAL): \n", other_student_dictionary)
 
 
 # FINALIZING POD GROUPS
@@ -411,6 +422,27 @@ while i != number_of_total_pod_groups:
 
 
 #print(all_pod_groups_list)
+
+
+#COMPUTING GENDER RATIO
+#---------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # SAVING THE MODEL (2 Methods)
 #---------------------------------------------------------------------
