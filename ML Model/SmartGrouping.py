@@ -427,6 +427,44 @@ while i != number_of_total_pod_groups:
 #COMPUTING GENDER RATIO
 #---------------------------------------------------------------------
 
+# get the gender values from each student 
+# if "F" add 1 to female counter 
+# else if "M" add 1 to male counter
+
+#COMPUTING SCHOOL RATIO
+#---------------------------------------------------------------------
+
+# get the school values from each student 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

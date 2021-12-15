@@ -6,7 +6,7 @@
         <div class="row">
           <div class="card mb-1 box-shadow">
             <br><br>
-            <h2 style="font-family:Gabriola">Schedule</h2>
+            <h2 style="font-family:cursive">Schedule</h2>
             <br><br>
             <div>
               <div>
