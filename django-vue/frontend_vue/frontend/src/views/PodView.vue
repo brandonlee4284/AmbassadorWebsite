@@ -8,7 +8,7 @@
               show pod in APIData.slice(i,i+1)
           -->
           <div v-for="pod in APIData.slice(pod_number-1,pod_number)" :key="pod.id" class="">
-            <h1 class="" style="margin:4vw 0 0 0;font-family:cursive">{{pod.pod_group_number}}</h1>
+            <h1 class="" style="margin:4vw 0 0 0;font-family:Cambria">{{pod.pod_group_number}}</h1>
             <p>Room: {{pod.pod_room_number}}</p>
             <table id="students">
               <tr>
@@ -46,7 +46,7 @@ export default {
     
   },
   mounted() {
-  document.title = 'Pod View'
+  document.title = "Pod " + pod_number
   },
   computed: mapState(['APIData']),
   created () {

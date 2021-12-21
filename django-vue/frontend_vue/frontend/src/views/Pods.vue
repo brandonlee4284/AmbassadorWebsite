@@ -3,7 +3,7 @@
     <div class="album py-5 bg-light">
         <div class="container">
           <div class="row">
-            <h1 style="font-family:cursive"><i class="fas fa-users"></i> Assigned Pods</h1>
+            <h1 style="font-family:Cambria"><i class="fas fa-users"></i> <b>Assigned Pods</b></h1>
             <div>
               <form class="search">
                 <input type="text" placeholder="Search Pod Group.." name="search" style="position:relative;left:-10px">
@@ -64,7 +64,7 @@
   export default {
     name: 'Pods',
     mounted() {
-    document.title = 'View Pods'
+    document.title = 'Assigned Pods'
     },
     computed: mapState(['APIData']),
     created () {

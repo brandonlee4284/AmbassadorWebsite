@@ -2,7 +2,7 @@
     <div id="home" class="">
        <div class="album py-5 bg-light">
         <div class="container">
-            <h1 style="font-family:cursive"><i class="fas fa-calendar-alt" style="font-size:32px"></i> Upcoming Events</h1>
+            <h1 style="font-family:Cambria"><i class="fas fa-calendar-alt" style="font-size:32px"></i><b> Upcoming Events</b></h1>
             
             <!--<div v-for="homeImage in APIData1" :key="homeImage.id" class="col-md-6">
               <a :href="homeImage.image_redirect" target="_blank">
@@ -128,6 +128,7 @@ img:hover{
 img{
   transition: 0.3s;
 }
+
 
 
 

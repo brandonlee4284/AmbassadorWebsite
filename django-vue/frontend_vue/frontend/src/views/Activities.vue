@@ -2,7 +2,7 @@
   <div id="activities">
     <div class="album py-5 bg-light">
     <div class="container">
-        <h1 style="font-family:cursive"><i class="fas fa-gamepad" style="font-size:32px"></i> Activities</h1>
+        <h1 style="font-family:Cambria"><i class="fas fa-gamepad" style="font-size:32px"></i> <b>Activities</b></h1>
         <div v-for="schedule in APIData" :key="schedule.id" class="col-md-6">
 
               <hr>

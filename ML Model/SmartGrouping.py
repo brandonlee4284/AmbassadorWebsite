@@ -410,7 +410,7 @@ all_pod_groups_dictionary.update(other_student_dictionary)
 
 number_of_total_pod_groups = len(all_pod_groups_dictionary)
 
-#print("\n\n",all_pod_groups_dictionary)
+print("\n\n",all_pod_groups_dictionary)
 
 # converting dictionary to list
 all_pod_groups_list = []
@@ -426,46 +426,15 @@ while i != number_of_total_pod_groups:
 
 #COMPUTING GENDER RATIO
 #---------------------------------------------------------------------
-
 # get the gender values from each student 
 # if "F" add 1 to female counter 
 # else if "M" add 1 to male counter
+
 
 #COMPUTING SCHOOL RATIO
 #---------------------------------------------------------------------
 
 # get the school values from each student 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -2,7 +2,7 @@
   <div id="developers">
     <div class="album py-5 bg-light">
     <div class="container">
-        <h1 style="font-family:cursive"><i class="fas fa-users-cog" style="font-size:32px"></i> Developers</h1>
+        <h1 style="font-family:Cambria"><i class="fas fa-users-cog" style="font-size:32px"></i> <b>Developers</b></h1>
 
                 
     </div>

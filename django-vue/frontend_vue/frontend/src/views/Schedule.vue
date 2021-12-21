@@ -6,7 +6,7 @@
         <div class="row">
           <div class="card mb-1 box-shadow">
             <br><br>
-            <h2 style="font-family:cursive">Schedule</h2>
+            <h2 style="font-family:Cambria">Schedule</h2>
             <br><br>
             <div>
               <div>
@@ -38,7 +38,7 @@ export default {
     
   },
   mounted() {
-    document.title = 'Day Schedule'
+    document.title = 'Schedule'
   },
   computed: mapState(['APIData']),
   data(){
