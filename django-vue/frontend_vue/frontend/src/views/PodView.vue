@@ -10,21 +10,27 @@
           <div v-for="pod in APIData.slice(pod_number-1,pod_number)" :key="pod.id" class="">
             <h1 class="" style="margin:4vw 0 0 0;font-family:Cambria">{{pod.pod_group_number}}</h1>
             <p>Room: {{pod.pod_room_number}}</p>
+            <p>Demographic: <b>Gender Ratio:</b> {{pod.gender_ratio}} | <b>School Ratio:</b> {{pod.school_ratio}} | <b>Total Students:</b> {{pod.total_students}}</p>
+            
             <table id="students">
               <tr>
                 <th>Pod Leader(s)</th>
                 <th>Members</th>
+                
               </tr>
               <tr>
-                <td>{{pod.pod_leader}}</td>
+                <td class="center">{{pod.pod_leader}}</td>
                 <div v-for="pod in APIData.slice(pod_number-1,pod_number)" :key="pod.id" class="">
                   <td>{{pod.pod_group_members}}</td>
                 </div>
+                
               </tr>
             </table>
             <br>
-            <p><b>Additional Notes:</b> {{pod.additional_notes}}</p>
-            <br><br><br><br><br><br><br>
+            <p><b>Additional Notes:</b></p>
+            <p>{{pod.additional_notes}}</p>          
+            <br><br>
+            
           </div>
 
         </div>
@@ -80,7 +86,7 @@ export default {
   width: 100%;
 }
 
-#students td, #customers th {
+#students td, #students th {
   border: 1px solid #ddd;
   padding: 8px;
 }

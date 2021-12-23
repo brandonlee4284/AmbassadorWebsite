@@ -52,7 +52,7 @@ class StudentAdmin(admin.ModelAdmin):
 
     
 class PodAdmin(admin.ModelAdmin):
-    list_display = ('pod_group_number', 'pod_leader', 'pod_room_number', 'pod_group_members')
+    list_display = ('pod_group_number', 'pod_leader', 'pod_room_number', 'pod_group_members', 'gender_ratio', 'school_ratio', 'total_students')
 
     def get_urls(self):
         urls = super().get_urls()
@@ -193,7 +193,7 @@ class PodAdmin(admin.ModelAdmin):
             predictions = abs(student_testing_labels.round())
             student_final_data['POD GROUP'] = predictions
 
-            print(student_final_data)
+            #print(student_final_data)
 
             # adding students to dictionary
             student_dictionary = student_final_data.to_dict(orient="index")
@@ -244,7 +244,7 @@ class PodAdmin(admin.ModelAdmin):
             total_spanish_students = len(spanish_group_dict)
             total_other_students = len(other_group_dict)
 
-            print(total_spanish_students)
+            #print(total_spanish_students + total_english_students + total_other_students)
 
             # ORGANIZING PODS
             #---------------------------------------------------------------------
@@ -367,8 +367,16 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] = \
                             dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number-1)].items(), 0, half_way_index))
 
-                            for x in range(half_way_index):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+                            #for x in range(half_way_index):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < half_way_index:
+                                    keys_to_remove_1.append(key)
+
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
 
                         if len(extra_students_dict) == 3:
                             # 2 groups: (7,8)
@@ -388,8 +396,16 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] = \
                             dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number-1)].items(), 0, half_way_index))
 
-                            for x in range(half_way_index):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+                            #for x in range(half_way_index):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < half_way_index:
+                                    keys_to_remove_1.append(key)
+
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
 
                         if len(extra_students_dict) == 4:
                             # 2 groups: (8,8)
@@ -409,8 +425,16 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] = \
                             dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number-1)].items(), 0, half_way_index))
 
-                            for x in range(half_way_index):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+                            #for x in range(half_way_index):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < half_way_index:
+                                    keys_to_remove_1.append(key)
+
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
 
                         if len(extra_students_dict) == 5:
                             # 2 groups: (8,9)
@@ -430,8 +454,16 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] = \
                             dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number-1)].items(), 0, half_way_index))
 
-                            for x in range(half_way_index):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+                            #for x in range(half_way_index):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < half_way_index:
+                                    keys_to_remove_1.append(key)
+
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
 
                             
                         if len(extra_students_dict) == 6:
@@ -452,8 +484,16 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] = \
                             dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number-1)].items(), 0, half_way_index))
 
-                            for x in range(half_way_index):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+                            #for x in range(half_way_index):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < half_way_index:
+                                    keys_to_remove_1.append(key)
+
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
 
                         if len(extra_students_dict) == 7:
                             # 2 groups: (10,9)
@@ -473,8 +513,16 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] = \
                             dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number-1)].items(), 0, half_way_index))
 
-                            for x in range(half_way_index):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+                            #for x in range(half_way_index):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+                            
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < half_way_index:
+                                    keys_to_remove_1.append(key)
+
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
 
                     # 2
                     #------------------------------------
@@ -496,17 +544,35 @@ class PodAdmin(admin.ModelAdmin):
 
                             index_1 = 5 # change
                             index_2 = 4 # change
+                            #print(group_number)
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] = \
                             dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number-1)].items(), 0, index_1))
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] \
                             .update(dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number)].items(), 0, index_2)))
                             
-                            next_start = len(language_pod_dictionary["Pod {0}".format(group_number-1)])
-                            for x in range(index_1):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
 
-                            for x in range(index_2):
-                                language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start+1))
+                            
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < index_1:
+                                    keys_to_remove_1.append(key)
+                                    #print(key)
+
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
+
+
+                                    
+                            keys_to_remove_2 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number)]): 
+                                if index < index_2:
+                                    keys_to_remove_2.append(key)
+                                    #print(key)
+
+                            for key in keys_to_remove_2:
+                                del language_pod_dictionary["Pod {0}".format(group_number)][key]
+                                
+
 
                         if len(extra_students_dict) == 4:
                             # 3 groups: (10,9,9)
@@ -530,12 +596,32 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] \
                             .update(dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number-2)].items(), 0, index_2)))
                             
-                            next_start = len(language_pod_dictionary["Pod {0}".format(group_number-2)])
-                            for x in range(index_1):
-                                language_pod_dictionary["Pod {0}".format(group_number-2)].pop(name + " Student {0}".format(x+1))
+                            #next_start = len(language_pod_dictionary["Pod {0}".format(group_number-2)])
+                            #for x in range(index_1):
+                                #language_pod_dictionary["Pod {0}".format(group_number-2)].pop(name + " Student {0}".format(x+1))
 
-                            for x in range(index_2):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+next_start+1))
+                            #for x in range(index_2):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+next_start+1))
+
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-2)]): 
+                                if index < index_1:
+                                    keys_to_remove_1.append(key)
+                                    #print(key)
+
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-2)][key]
+
+
+                                    
+                            keys_to_remove_2 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < index_2:
+                                    keys_to_remove_2.append(key)
+                                    #print(key)
+
+                            for key in keys_to_remove_2:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
 
                         if len(extra_students_dict) == 5:
                             # 3 groups: (10,10,9)
@@ -558,12 +644,33 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] \
                             .update(dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number)].items(), 0, index_2)))
                             
-                            next_start = len(language_pod_dictionary["Pod {0}".format(group_number-1)])
-                            for x in range(index_1):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+                            #next_start = len(language_pod_dictionary["Pod {0}".format(group_number-1)])
+                            #for x in range(index_1):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
 
-                            for x in range(index_2):
-                                language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start+1))
+                            #for x in range(index_2):
+                                #language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start+1))
+
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < index_1:
+                                    keys_to_remove_1.append(key)
+                                    #print(key)
+
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
+
+
+                                    
+                            keys_to_remove_2 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number)]): 
+                                if index < index_2:
+                                    keys_to_remove_2.append(key)
+                                    #print(key)
+
+                            for key in keys_to_remove_2:
+                                del language_pod_dictionary["Pod {0}".format(group_number)][key]
+
 
                         if len(extra_students_dict) == 6:
                             # 3 groups: (10,10,10)
@@ -587,12 +694,33 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] \
                             .update(dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number-2)].items(), 0, index_2)))
                             
-                            next_start = len(language_pod_dictionary["Pod {0}".format(group_number-2)])
-                            for x in range(index_1):
-                                language_pod_dictionary["Pod {0}".format(group_number-2)].pop(name + " Student {0}".format(x+1))
+                            #next_start = len(language_pod_dictionary["Pod {0}".format(group_number-2)])
+                            #for x in range(index_1):
+                                #language_pod_dictionary["Pod {0}".format(group_number-2)].pop(name + " Student {0}".format(x+1))
 
-                            for x in range(index_2):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+next_start+1))
+                            #for x in range(index_2):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+next_start+1))
+
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-2)]): 
+                                if index < index_1:
+                                    keys_to_remove_1.append(key)
+                                    #print(key)
+
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-2)][key]
+
+
+                                    
+                            keys_to_remove_2 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < index_2:
+                                    keys_to_remove_2.append(key)
+                                    #print(key)
+
+                            for key in keys_to_remove_2:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
+
 
                         if len(extra_students_dict) == 7:
                             # 3 groups: (11,10,10)
@@ -617,12 +745,32 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] \
                             .update(dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number)].items(), 0, index_2)))
                             
-                            next_start = len(language_pod_dictionary["Pod {0}".format(group_number-1)])
-                            for x in range(index_1):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+                            #next_start = len(language_pod_dictionary["Pod {0}".format(group_number-1)])
+                            #for x in range(index_1):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
 
-                            for x in range(index_2):
-                                language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start+1))
+                            #for x in range(index_2):
+                                #language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start+1))
+
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < index_1:
+                                    keys_to_remove_1.append(key)
+                                    #print(key)
+
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
+
+
+                                    
+                            keys_to_remove_2 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number)]): 
+                                if index < index_2:
+                                    keys_to_remove_2.append(key)
+                                    #print(key)
+
+                            for key in keys_to_remove_2:
+                                del language_pod_dictionary["Pod {0}".format(group_number)][key]
 
                     # 3
                     #------------------------------------
@@ -657,16 +805,42 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] \
                             .update(dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number+1)].items(), 0, index_3)))
 
-                            next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-1)])
-                            next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number)])
-                            for x in range(index_1):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+                            #next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-1)])
+                            #next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number)])
+                            #for x in range(index_1):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
 
-                            for x in range(index_2):
-                                language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start_1+1))
+                            #for x in range(index_2):
+                                #language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start_1+1))
 
-                            for x in range(index_3):
-                                language_pod_dictionary["Pod {0}".format(group_number+1)].pop(name + " Student {0}".format(x+next_start_2+1))
+                            #for x in range(index_3):
+                                #language_pod_dictionary["Pod {0}".format(group_number+1)].pop(name + " Student {0}".format(x+next_start_2+1))
+
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < index_1:
+                                    keys_to_remove_1.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
+
+                                    
+                            keys_to_remove_2 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number)]): 
+                                if index < index_2:
+                                    keys_to_remove_2.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_2:
+                                del language_pod_dictionary["Pod {0}".format(group_number)][key]
+
+
+                            keys_to_remove_3 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number+1)]): 
+                                if index < index_3:
+                                    keys_to_remove_3.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_3:
+                                del language_pod_dictionary["Pod {0}".format(group_number+1)][key]
 
                         if len(extra_students_dict) == 5:
                             # 4 groups: (11,10,10,10)
@@ -696,16 +870,42 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] \
                             .update(dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number)].items(), 0, index_3)))
 
-                            next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-2)])
-                            next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number-1)])
-                            for x in range(index_1):
-                                language_pod_dictionary["Pod {0}".format(group_number-2)].pop(name + " Student {0}".format(x+1))
+                            #next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-2)])
+                            #next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number-1)])
+                            #for x in range(index_1):
+                                #language_pod_dictionary["Pod {0}".format(group_number-2)].pop(name + " Student {0}".format(x+1))
 
-                            for x in range(index_2):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+next_start_1+1))
+                            #for x in range(index_2):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+next_start_1+1))
 
-                            for x in range(index_3):
-                                language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start_2+1))
+                            #for x in range(index_3):
+                                #language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start_2+1))
+
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-2)]): 
+                                if index < index_1:
+                                    keys_to_remove_1.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-2)][key]
+
+                                    
+                            keys_to_remove_2 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < index_2:
+                                    keys_to_remove_2.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_2:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
+
+
+                            keys_to_remove_3 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number)]): 
+                                if index < index_3:
+                                    keys_to_remove_3.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_3:
+                                del language_pod_dictionary["Pod {0}".format(group_number)][key]
 
                         if len(extra_students_dict) == 6:
                             # 4 groups: (11,11,10,10)
@@ -735,16 +935,41 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] \
                             .update(dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number-1)].items(), 0, index_3)))
 
-                            next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-3)])
-                            next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number-2)])
-                            for x in range(index_1):
-                                language_pod_dictionary["Pod {0}".format(group_number-3)].pop(name + " Student {0}".format(x+1))
+                            #next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-3)])
+                            #next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number-2)])
+                            #for x in range(index_1):
+                                #language_pod_dictionary["Pod {0}".format(group_number-3)].pop(name + " Student {0}".format(x+1))
 
-                            for x in range(index_2):
-                                language_pod_dictionary["Pod {0}".format(group_number-2)].pop(name + " Student {0}".format(x+next_start_1+1))
+                            #for x in range(index_2):
+                                #language_pod_dictionary["Pod {0}".format(group_number-2)].pop(name + " Student {0}".format(x+next_start_1+1))
 
-                            for x in range(index_3):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+next_start_2+1))
+                            #for x in range(index_3):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+next_start_2+1))
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-3)]): 
+                                if index < index_1:
+                                    keys_to_remove_1.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-3)][key]
+
+                                    
+                            keys_to_remove_2 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-2)]): 
+                                if index < index_2:
+                                    keys_to_remove_2.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_2:
+                                del language_pod_dictionary["Pod {0}".format(group_number-2)][key]
+
+
+                            keys_to_remove_3 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < index_3:
+                                    keys_to_remove_3.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_3:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
 
                         if len(extra_students_dict) == 7:
                             # 4 groups: (11,11,11,10)
@@ -774,19 +999,46 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] \
                             .update(dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number+1)].items(), 0, index_3)))
 
-                            next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-1)])
-                            next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number)])
-                            for x in range(index_1):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+                            #next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-1)])
+                            #next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number)])
+                            #for x in range(index_1):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
 
-                            for x in range(index_2):
-                                language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start_1+1))
+                            #for x in range(index_2):
+                                #language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start_1+1))
 
-                            for x in range(index_3):
-                                language_pod_dictionary["Pod {0}".format(group_number+1)].pop(name + " Student {0}".format(x+next_start_2+1))
+                            #for x in range(index_3):
+                                #language_pod_dictionary["Pod {0}".format(group_number+1)].pop(name + " Student {0}".format(x+next_start_2+1))
+
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < index_1:
+                                    keys_to_remove_1.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
+
+                                    
+                            keys_to_remove_2 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number)]): 
+                                if index < index_2:
+                                    keys_to_remove_2.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_2:
+                                del language_pod_dictionary["Pod {0}".format(group_number)][key]
+
+
+                            keys_to_remove_3 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number+1)]): 
+                                if index < index_3:
+                                    keys_to_remove_3.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_3:
+                                del language_pod_dictionary["Pod {0}".format(group_number+1)][key]
 
                     # 4
                     #------------------------------------
+                    
 
                     if len(language_pod_dictionary) == 4: 
             
@@ -822,21 +1074,57 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] \
                             .update(dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number+2)].items(), 0, index_4)))
 
-                            next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-1)])
-                            next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number)])
-                            next_start_3 = next_start_2 + len(language_pod_dictionary["Pod {0}".format(group_number+1)])
-                            for x in range(index_1):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+                            #next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-1)])
+                            #next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number)])
+                            #next_start_3 = next_start_2 + len(language_pod_dictionary["Pod {0}".format(group_number+1)])
+                            #for x in range(index_1):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
 
-                            for x in range(index_2):
-                                language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start_1+1))
+                            #for x in range(index_2):
+                                #language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start_1+1))
 
-                            for x in range(index_3):
-                                language_pod_dictionary["Pod {0}".format(group_number+1)].pop(name + " Student {0}".format(x+next_start_2+1))
+                            #for x in range(index_3):
+                                #language_pod_dictionary["Pod {0}".format(group_number+1)].pop(name + " Student {0}".format(x+next_start_2+1))
                             
-                            for x in range(index_4):
-                                print(x+next_start_3+1)
-                                language_pod_dictionary["Pod {0}".format(group_number+2)].pop(name + " Student {0}".format(x+next_start_3+1))
+                            #for x in range(index_4):
+                                #print(x+next_start_3+1)
+                                #language_pod_dictionary["Pod {0}".format(group_number+2)].pop(name + " Student {0}".format(x+next_start_3+1))
+
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < index_1:
+                                    keys_to_remove_1.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
+
+                                    
+                            keys_to_remove_2 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number)]): 
+                                if index < index_2:
+                                    keys_to_remove_2.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_2:
+                                del language_pod_dictionary["Pod {0}".format(group_number)][key]
+
+
+                            keys_to_remove_3 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number+1)]): 
+                                if index < index_3:
+                                    keys_to_remove_3.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_3:
+                                del language_pod_dictionary["Pod {0}".format(group_number+1)][key]
+
+
+                            keys_to_remove_4 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number+2)]): 
+                                if index < index_4:
+                                    keys_to_remove_4.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_4:
+                                del language_pod_dictionary["Pod {0}".format(group_number+2)][key]
+
 
                         if len(extra_students_dict) == 6:
                             # 5 groups: (11,11,11,11,10)
@@ -870,22 +1158,56 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] \
                             .update(dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number+1)].items(), 0, index_4)))
 
-                            next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-2)])
-                            next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number-1)])
-                            next_start_3 = next_start_2 + len(language_pod_dictionary["Pod {0}".format(group_number)])
-                            for x in range(index_1):
-                                language_pod_dictionary["Pod {0}".format(group_number-2)].pop(name + " Student {0}".format(x+1))
+                            #next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-2)])
+                            #next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number-1)])
+                            #next_start_3 = next_start_2 + len(language_pod_dictionary["Pod {0}".format(group_number)])
+                            #for x in range(index_1):
+                                #language_pod_dictionary["Pod {0}".format(group_number-2)].pop(name + " Student {0}".format(x+1))
 
-                            for x in range(index_2):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+next_start_1+1))
+                            #for x in range(index_2):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+next_start_1+1))
 
-                            for x in range(index_3):
-                                language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start_2+1))
+                            #for x in range(index_3):
+                                #language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start_2+1))
                             
-                            for x in range(index_4):
+                            #for x in range(index_4):
                                 #print(x+next_start_3+1)
-                                language_pod_dictionary["Pod {0}".format(group_number+1)].pop(name + " Student {0}".format(x+next_start_3+1))
+                                #language_pod_dictionary["Pod {0}".format(group_number+1)].pop(name + " Student {0}".format(x+next_start_3+1))
 
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-2)]): 
+                                if index < index_1:
+                                    keys_to_remove_1.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-2)][key]
+
+                                    
+                            keys_to_remove_2 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < index_2:
+                                    keys_to_remove_2.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_2:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
+
+
+                            keys_to_remove_3 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number)]): 
+                                if index < index_3:
+                                    keys_to_remove_3.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_3:
+                                del language_pod_dictionary["Pod {0}".format(group_number)][key]
+
+
+                            keys_to_remove_4 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number+1)]): 
+                                if index < index_4:
+                                    keys_to_remove_4.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_4:
+                                del language_pod_dictionary["Pod {0}".format(group_number+1)][key]
 
 
                         if len(extra_students_dict) == 7:
@@ -920,21 +1242,56 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] \
                             .update(dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number)].items(), 0, index_4)))
 
-                            next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-3)])
-                            next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number-2)])
-                            next_start_3 = next_start_2 + len(language_pod_dictionary["Pod {0}".format(group_number-1)])
-                            for x in range(index_1):
-                                language_pod_dictionary["Pod {0}".format(group_number-3)].pop(name + " Student {0}".format(x+1))
+                            #next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-3)])
+                            #next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number-2)])
+                            #next_start_3 = next_start_2 + len(language_pod_dictionary["Pod {0}".format(group_number-1)])
+                            #for x in range(index_1):
+                                #language_pod_dictionary["Pod {0}".format(group_number-3)].pop(name + " Student {0}".format(x+1))
 
-                            for x in range(index_2):
-                                language_pod_dictionary["Pod {0}".format(group_number-2)].pop(name + " Student {0}".format(x+next_start_1+1))
+                            #for x in range(index_2):
+                                #language_pod_dictionary["Pod {0}".format(group_number-2)].pop(name + " Student {0}".format(x+next_start_1+1))
 
-                            for x in range(index_3):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+next_start_2+1))
+                            #for x in range(index_3):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+next_start_2+1))
                             
-                            for x in range(index_4):
+                            #for x in range(index_4):
                                 #print(x+next_start_3+1)
-                                language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start_3+1))
+                                #language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start_3+1))
+
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-3)]): 
+                                if index < index_1:
+                                    keys_to_remove_1.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-3)][key]
+
+                                    
+                            keys_to_remove_2 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-2)]): 
+                                if index < index_2:
+                                    keys_to_remove_2.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_2:
+                                del language_pod_dictionary["Pod {0}".format(group_number-2)][key]
+
+
+                            keys_to_remove_3 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < index_3:
+                                    keys_to_remove_3.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_3:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
+
+
+                            keys_to_remove_4 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number)]): 
+                                if index < index_4:
+                                    keys_to_remove_4.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_4:
+                                del language_pod_dictionary["Pod {0}".format(group_number)][key]
 
 
                     # 5
@@ -1034,25 +1391,69 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] \
                             .update(dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number+2)].items(), 0, index_5)))
 
-                            next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-2)])
-                            next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number-1)])
-                            next_start_3 = next_start_2 + len(language_pod_dictionary["Pod {0}".format(group_number)])
-                            next_start_4 = next_start_3 + len(language_pod_dictionary["Pod {0}".format(group_number+1)])
-                            for x in range(index_1):
-                                language_pod_dictionary["Pod {0}".format(group_number-2)].pop(name + " Student {0}".format(x+1))
+                            #next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-2)])
+                            #next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number-1)])
+                            #next_start_3 = next_start_2 + len(language_pod_dictionary["Pod {0}".format(group_number)])
+                            #next_start_4 = next_start_3 + len(language_pod_dictionary["Pod {0}".format(group_number+1)])
+                            #for x in range(index_1):
+                                #language_pod_dictionary["Pod {0}".format(group_number-2)].pop(name + " Student {0}".format(x+1))
 
-                            for x in range(index_2):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+next_start_1+1))
+                            #for x in range(index_2):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+next_start_1+1))
 
-                            for x in range(index_3):
-                                language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start_2+1))
+                            #for x in range(index_3):
+                                #language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start_2+1))
                             
-                            for x in range(index_4):
+                            #for x in range(index_4):
                                 #print(x+next_start_3+1)
-                                language_pod_dictionary["Pod {0}".format(group_number+1)].pop(name + " Student {0}".format(x+next_start_3+1))
+                                #language_pod_dictionary["Pod {0}".format(group_number+1)].pop(name + " Student {0}".format(x+next_start_3+1))
 
-                            for x in range(index_5):
-                                language_pod_dictionary["Pod {0}".format(group_number+2)].pop(name + " Student {0}".format(x+next_start_4+1))
+                            #for x in range(index_5):
+                                #language_pod_dictionary["Pod {0}".format(group_number+2)].pop(name + " Student {0}".format(x+next_start_4+1))
+
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-2)]): 
+                                if index < index_1:
+                                    keys_to_remove_1.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-2)][key]
+
+                                    
+                            keys_to_remove_2 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < index_2:
+                                    keys_to_remove_2.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_2:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
+
+
+                            keys_to_remove_3 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number)]): 
+                                if index < index_3:
+                                    keys_to_remove_3.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_3:
+                                del language_pod_dictionary["Pod {0}".format(group_number)][key]
+
+
+                            keys_to_remove_4 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number+1)]): 
+                                if index < index_4:
+                                    keys_to_remove_4.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_4:
+                                del language_pod_dictionary["Pod {0}".format(group_number+1)][key]
+
+                            
+                            keys_to_remove_5 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number+2)]): 
+                                if index < index_5:
+                                    keys_to_remove_5.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_5:
+                                del language_pod_dictionary["Pod {0}".format(group_number+2)][key]
 
                     # 6
                     #------------------------------------
@@ -1099,29 +1500,82 @@ class PodAdmin(admin.ModelAdmin):
                             newly_add_pods_dict["Pod {0}".format(new_group_number)] \
                             .update(dict(itertools.islice(language_pod_dictionary["Pod {0}".format(group_number+4)].items(), 0, index_6)))
 
-                            next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-1)])
-                            next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number)])
-                            next_start_3 = next_start_2 + len(language_pod_dictionary["Pod {0}".format(group_number+1)])
-                            next_start_4 = next_start_3 + len(language_pod_dictionary["Pod {0}".format(group_number+2)])
-                            next_start_5 = next_start_4 + len(language_pod_dictionary["Pod {0}".format(group_number+3)])
-                            for x in range(index_1):
-                                language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
+                            #next_start_1 = len(language_pod_dictionary["Pod {0}".format(group_number-1)])
+                            #next_start_2 = next_start_1 + len(language_pod_dictionary["Pod {0}".format(group_number)])
+                            #next_start_3 = next_start_2 + len(language_pod_dictionary["Pod {0}".format(group_number+1)])
+                            #next_start_4 = next_start_3 + len(language_pod_dictionary["Pod {0}".format(group_number+2)])
+                            #next_start_5 = next_start_4 + len(language_pod_dictionary["Pod {0}".format(group_number+3)])
+                            #for x in range(index_1):
+                                #language_pod_dictionary["Pod {0}".format(group_number-1)].pop(name + " Student {0}".format(x+1))
 
-                            for x in range(index_2):
-                                language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start_1+1))
+                            #for x in range(index_2):
+                                #language_pod_dictionary["Pod {0}".format(group_number)].pop(name + " Student {0}".format(x+next_start_1+1))
 
-                            for x in range(index_3):
-                                language_pod_dictionary["Pod {0}".format(group_number+1)].pop(name + " Student {0}".format(x+next_start_2+1))
+                            #for x in range(index_3):
+                                #language_pod_dictionary["Pod {0}".format(group_number+1)].pop(name + " Student {0}".format(x+next_start_2+1))
                             
-                            for x in range(index_4):
+                            #for x in range(index_4):
                                 #print(x+next_start_3+1)
-                                language_pod_dictionary["Pod {0}".format(group_number+2)].pop(name + " Student {0}".format(x+next_start_3+1))
+                                #language_pod_dictionary["Pod {0}".format(group_number+2)].pop(name + " Student {0}".format(x+next_start_3+1))
 
-                            for x in range(index_5):
-                                language_pod_dictionary["Pod {0}".format(group_number+3)].pop(name + " Student {0}".format(x+next_start_4+1))
+                            #for x in range(index_5):
+                                #language_pod_dictionary["Pod {0}".format(group_number+3)].pop(name + " Student {0}".format(x+next_start_4+1))
 
-                            for x in range(index_6):
-                                language_pod_dictionary["Pod {0}".format(group_number+4)].pop(name + " Student {0}".format(x+next_start_5+1))
+                            #for x in range(index_6):
+                                #language_pod_dictionary["Pod {0}".format(group_number+4)].pop(name + " Student {0}".format(x+next_start_5+1))
+
+                            keys_to_remove_1 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number-1)]): 
+                                if index < index_1:
+                                    keys_to_remove_1.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_1:
+                                del language_pod_dictionary["Pod {0}".format(group_number-1)][key]
+
+                                    
+                            keys_to_remove_2 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number)]): 
+                                if index < index_2:
+                                    keys_to_remove_2.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_2:
+                                del language_pod_dictionary["Pod {0}".format(group_number)][key]
+
+
+                            keys_to_remove_3 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number+1)]): 
+                                if index < index_3:
+                                    keys_to_remove_3.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_3:
+                                del language_pod_dictionary["Pod {0}".format(group_number+1)][key]
+
+
+                            keys_to_remove_4 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number+2)]): 
+                                if index < index_4:
+                                    keys_to_remove_4.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_4:
+                                del language_pod_dictionary["Pod {0}".format(group_number+2)][key]
+
+                            
+                            keys_to_remove_5 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number+3)]): 
+                                if index < index_5:
+                                    keys_to_remove_5.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_5:
+                                del language_pod_dictionary["Pod {0}".format(group_number+3)][key]
+
+                            
+                            keys_to_remove_6 = []
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(group_number+4)]): 
+                                if index < index_6:
+                                    keys_to_remove_6.append(key)
+                                    #print(key)
+                            for key in keys_to_remove_6:
+                                del language_pod_dictionary["Pod {0}".format(group_number+4)][key]
                         
 
                 return language_pod_dictionary
@@ -1138,16 +1592,16 @@ class PodAdmin(admin.ModelAdmin):
             add_extra_students(other_pod_dictionary, group_number, extra_other_students_dict, newly_add_pods_dict, "Other")
 
 
-            print("\nEnglish Groups: \n", english_pod_dictionary)
+            #print("\nEnglish Groups: \n", english_pod_dictionary)
             #print("\nEnglish Extra Students: \n", extra_english_students_dict)
 
-            print("\nSpanish Groups: \n", spanish_pod_dictionary)
+            #print("\nSpanish Groups: \n", spanish_pod_dictionary)
             #print("\nSpanish Extra Students: \n", extra_spanish_students_dict)
 
-            print("\nOther Groups: \n", other_pod_dictionary)
+            #print("\nOther Groups: \n", other_pod_dictionary)
             #print("\nOther Extra Students: \n", extra_other_students_dict)
 
-            print("\nNew Groups: \n", newly_add_pods_dict)
+            #print("\nNew Groups: \n", newly_add_pods_dict)
 
             # COMPUTING GENDER RATIO
             #---------------------------------------------------------------------
@@ -1168,12 +1622,14 @@ class PodAdmin(admin.ModelAdmin):
                 elif name == "Spanish":
                     student_dict_id = pod_number - len(english_pod_dictionary)
                     
-
                 elif name == "Other":
                     student_dict_id = pod_number - (len(spanish_pod_dictionary) + len(english_pod_dictionary))
                 
                 elif name == "New":
                     student_dict_id = pod_number - (len(spanish_pod_dictionary) + len(english_pod_dictionary) + len(other_pod_dictionary))
+                
+                elif name == "All":
+                    student_dict_id = pod_number
                 
 
                 total_students = len(language_pod_dictionary["Pod {0}".format(pod_number)])
@@ -1242,6 +1698,9 @@ class PodAdmin(admin.ModelAdmin):
                 elif name == "New":
                     student_dict_id = pod_number - (len(spanish_pod_dictionary) + len(english_pod_dictionary) + len(other_pod_dictionary))
 
+                elif name == "All":
+                    student_dict_id = pod_number
+
                 total_students = len(language_pod_dictionary["Pod {0}".format(pod_number)])
                 original_student_counter = student_dict_id*len(language_pod_dictionary["Pod {0}".format(pod_number)])
                 student_counter = student_dict_id*len(language_pod_dictionary["Pod {0}".format(pod_number)])
@@ -1272,10 +1731,10 @@ class PodAdmin(admin.ModelAdmin):
 
 
                 ratio_string = f"{school_0_count}:{school_1_count}:{school_3_count}:{school_5_count} (0:1:3:5)"
-                school_0_ratio = f"School 0: {str(round(school_0_count/total_students,2))} ({str(round((school_0_count/total_students)*100))}%) \n" 
-                school_1_ratio = f"School 1: {str(round(school_1_count/total_students,2))} ({str(round((school_1_count/total_students)*100))}%) \n" 
-                school_3_ratio = f"School 3: {str(round(school_3_count/total_students,2))} ({str(round((school_3_count/total_students)*100))}%) \n" 
-                school_5_ratio = f"School 5: {str(round(school_5_count/total_students,2))} ({str(round((school_5_count/total_students)*100))}%)"
+                school_0_ratio = f"School 0: {str(round(school_0_count/total_students,2))}\n" 
+                school_1_ratio = f"School 1: {str(round(school_1_count/total_students,2))}\n" 
+                school_3_ratio = f"School 3: {str(round(school_3_count/total_students,2))}\n" 
+                school_5_ratio = f"School 5: {str(round(school_5_count/total_students,2))}"
                 school_ratio = school_0_ratio + school_1_ratio + school_3_ratio + school_5_ratio
 
                 print(f"Student School Ratio: {ratio_string}")
@@ -1285,49 +1744,509 @@ class PodAdmin(admin.ModelAdmin):
                 #print(school_5_ratio)
 
 
-                return school_ratio
-
+                return ratio_string
 
             print("\nPod Gender and School Ratios:" )
-            for x in range(len(english_pod_dictionary)):
-                print(f"Pod {x+1} (English): ")
-                print(str(calculate_gender_ratio(english_pod_dictionary, x+1, "English")) + " (M:F)\n")
-                print(str(calculate_school_ratio(english_pod_dictionary, x+1, "English")) + "\n\n")
+            def show_ratios():
+                for x in range(len(english_pod_dictionary)):
+                    print(f"Pod {x+1} (English): ")
+                    print(str(calculate_gender_ratio(english_pod_dictionary, x+1, "English")) + " (M:F)\n")
+                    print(str(calculate_school_ratio(english_pod_dictionary, x+1, "English")) + "\n\n")
 
-            for x in range(len(spanish_pod_dictionary)):
-                print(f"Pod {x+len(english_pod_dictionary)+1} (Spanish): ")
-                print(str(calculate_gender_ratio(spanish_pod_dictionary, x+len(english_pod_dictionary)+1, "Spanish")) + " (M:F)\n")
-                print(str(calculate_school_ratio(spanish_pod_dictionary, x+len(english_pod_dictionary)+1, "Spanish")) + "\n\n")
+                for x in range(len(spanish_pod_dictionary)):
+                    print(f"Pod {x+len(english_pod_dictionary)+1} (Spanish): ")
+                    print(str(calculate_gender_ratio(spanish_pod_dictionary, x+len(english_pod_dictionary)+1, "Spanish")) + " (M:F)\n")
+                    print(str(calculate_school_ratio(spanish_pod_dictionary, x+len(english_pod_dictionary)+1, "Spanish")) + "\n\n")
 
-            for x in range(len(other_pod_dictionary)):
-                print(f"Pod {x+len(spanish_pod_dictionary)+len(english_pod_dictionary)+1} (Other): ")
-                print(str(calculate_gender_ratio(other_pod_dictionary, x+len(spanish_pod_dictionary)+len(english_pod_dictionary)+1, "Other")) + " (M:F)\n")
-                print(str(calculate_school_ratio(other_pod_dictionary, x+len(spanish_pod_dictionary)+len(english_pod_dictionary)+1, "Other")) + "\n\n")
+                for x in range(len(other_pod_dictionary)):
+                    print(f"Pod {x+len(spanish_pod_dictionary)+len(english_pod_dictionary)+1} (Other): ")
+                    print(str(calculate_gender_ratio(other_pod_dictionary, x+len(spanish_pod_dictionary)+len(english_pod_dictionary)+1, "Other")) + " (M:F)\n")
+                    print(str(calculate_school_ratio(other_pod_dictionary, x+len(spanish_pod_dictionary)+len(english_pod_dictionary)+1, "Other")) + "\n\n")
 
-            for x in range(len(newly_add_pods_dict)):
-                print(f"Pod {x+len(spanish_pod_dictionary)+len(english_pod_dictionary)+len(other_pod_dictionary)+1} (New Groups): ")
-                print(str(calculate_gender_ratio(newly_add_pods_dict, x+len(spanish_pod_dictionary)+len(english_pod_dictionary)+len(other_pod_dictionary)+1, "New")) + " (M:F)\n")
-                print(str(calculate_school_ratio(newly_add_pods_dict, x+len(spanish_pod_dictionary)+len(english_pod_dictionary)+len(other_pod_dictionary)+1, "New")) + "\n\n")
+                for x in range(len(newly_add_pods_dict)):
+                    print(f"Pod {x+len(spanish_pod_dictionary)+len(english_pod_dictionary)+len(other_pod_dictionary)+1} (New Groups): ")
+                    print(str(calculate_gender_ratio(newly_add_pods_dict, x+len(spanish_pod_dictionary)+len(english_pod_dictionary)+len(other_pod_dictionary)+1, "New")) + " (M:F)\n")
+                    print(str(calculate_school_ratio(newly_add_pods_dict, x+len(spanish_pod_dictionary)+len(english_pod_dictionary)+len(other_pod_dictionary)+1, "New")) + "\n\n")
 
-
+            #show_ratios()
             # FIXING GENDER RATIO (IF NEEDED)
             #---------------------------------------------------------------------
-            def fix_gender_ratio(language_pod_dictionary, pod_number, name):
+            def shuffle_genders(language_pod_dictionary, pod_number, name):
                 gender_ratio = calculate_gender_ratio(language_pod_dictionary, pod_number, name)
+                male_key = ""
+                female_key = ""
+                
+            
+                if gender_ratio < 0.4:
+                    #swap a male from pod_number+1 for a female from pod_number
+                    for index, key in enumerate(language_pod_dictionary["Pod {0}".format(pod_number)]): # call by index
+                        if language_pod_dictionary["Pod {0}".format(pod_number)][str(key)]["Gender"] == "F":
+                            female_student = dict(itertools.islice(language_pod_dictionary["Pod {0}".format(pod_number)].items(), index, index+1))
+                            female_key = key
+                            break
 
-                if gender_ratio > 0.4:
-                    #reshuffle?
-                    return True
+
+                    for index, key in enumerate(language_pod_dictionary["Pod {0}".format(pod_number+1)]):
+                        if language_pod_dictionary["Pod {0}".format(pod_number+1)][str(key)]["Gender"] == "M":
+                            male_student = dict(itertools.islice(language_pod_dictionary["Pod {0}".format(pod_number+1)].items(), index, index+1))
+                            male_key = key
+                            break
+                    
+                    if len(str(male_key)) > 0:
+                        language_pod_dictionary["Pod {0}".format(pod_number)].update(male_student)
+                        language_pod_dictionary["Pod {0}".format(pod_number)].pop(female_key)
+
+                        language_pod_dictionary["Pod {0}".format(pod_number+1)].update(female_student)
+                        language_pod_dictionary["Pod {0}".format(pod_number+1)].pop(male_key)
+                    else:
+                        print("no more males")
+                        return False
+
+
+
+
+                if gender_ratio > 0.6:
+                    #swap a male from pod_number+1 for a female from pod_number
+                    for index, key in enumerate(language_pod_dictionary["Pod {0}".format(pod_number)]): # call by index
+                        if language_pod_dictionary["Pod {0}".format(pod_number)][str(key)]["Gender"] == "M":
+                            male_student = dict(itertools.islice(language_pod_dictionary["Pod {0}".format(pod_number)].items(), index, index+1))
+                            male_key = key
+                            break
+
+                    for index, key in enumerate(language_pod_dictionary["Pod {0}".format(pod_number+1)]):
+                        if language_pod_dictionary["Pod {0}".format(pod_number+1)][str(key)]["Gender"] == "F":
+                            female_student = dict(itertools.islice(language_pod_dictionary["Pod {0}".format(pod_number+1)].items(), index, index+1))
+                            female_key = key
+                            break
+
+
+                    if len(str(female_key)) > 0:
+                        language_pod_dictionary["Pod {0}".format(pod_number)].update(female_student)
+                        language_pod_dictionary["Pod {0}".format(pod_number)].pop(male_key)
+
+                        language_pod_dictionary["Pod {0}".format(pod_number+1)].update(male_student)
+                        language_pod_dictionary["Pod {0}".format(pod_number+1)].pop(female_key)
+                    else:
+                        print("no more females")
+                        return False
+
+                
+
+
+
+                new_gender_ratio = calculate_gender_ratio(language_pod_dictionary, pod_number, name)
+
+
+
+                return new_gender_ratio
+
+                #print("\n")
+                #print(female_student)
+                #print(male_student)
+
+            def fix_gender_ratio(language_pod_dictionary, name):
+                i=0
+                if name == "English":
+                    pod_count = 1
+                if name == "Spanish":
+                    pod_count = len(english_pod_dictionary) + 1
+                if name == "Other":
+                    pod_count = len(english_pod_dictionary) + len(spanish_pod_dictionary) + 1
+
+                while i != len(language_pod_dictionary)-1: #if no -1 then will give keyerror (last group wont be fixed)
+                    gender_ratio = calculate_gender_ratio(language_pod_dictionary, pod_count, name)
+                    while True:
+                        #reshuffle until true (recursion)(brute-force methd)
+                        if (gender_ratio < 0.4 or gender_ratio > 0.6):
+                            gender_ratio = shuffle_genders(language_pod_dictionary, pod_count, name)
+                            if shuffle_genders(language_pod_dictionary, pod_count, name) == False:
+                                break
+
+                            
+                        else:
+                            #print("Pod {0}".format(pod_count))
+                            #print(gender_ratio)
+                            break
+                    i += 1
+                    pod_count += 1
+                        
+
+            #print("BEFORE:")
+            #shuffle_genders(english_pod_dictionary,20,"English")
+            #print("AFTER:")
+            #calculate_gender_ratio(english_pod_dictionary,20,"English")
+
+
+
+            # function to deal with end pods if gender ratio < 0.4 or > 0.6 take from pods with 6:6 to make them 5:7
+            def final_pod_gender_redistributor(language_pod_dictionary, pod_number, name):
+                last_gender_ratio = calculate_gender_ratio(language_pod_dictionary, pod_number, name)
+                i = 0
+
+                if name == "English":
+                    pod_counter = 1
+                    last_pod_number = len(english_pod_dictionary)
+                elif name == "Spanish":
+                    pod_counter = len(english_pod_dictionary) + 1
+                    last_pod_number = len(english_pod_dictionary) + len(spanish_pod_dictionary)
+                elif name == "Other":
+                    pod_counter = len(english_pod_dictionary) + len(spanish_pod_dictionary) + 1
+                    last_pod_number = len(english_pod_dictionary) + len(spanish_pod_dictionary) + len(other_pod_dictionary)
+
+                if last_gender_ratio < 0.4: # less males
+                    while i != len(language_pod_dictionary):
+                        gender_ratio = calculate_gender_ratio(language_pod_dictionary, pod_counter, name)
+                        if gender_ratio == 0.5: #if a pod has 6:6 ratio (realistically only works for english pods)
+                            # take a male out and put into last pod
+                            # take a female out of last pod and put into 6:6 ratio pod
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(pod_counter)]): # call by index
+                                if language_pod_dictionary["Pod {0}".format(pod_counter)][str(key)]["Gender"] == "M":
+                                    male_student = dict(itertools.islice(language_pod_dictionary["Pod {0}".format(pod_counter)].items(), index, index+1))
+                                    male_key = key
+                                    break
+
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(last_pod_number)]):
+                                if language_pod_dictionary["Pod {0}".format(last_pod_number)][str(key)]["Gender"] == "F":
+                                    female_student = dict(itertools.islice(language_pod_dictionary["Pod {0}".format(last_pod_number)].items(), index, index+1))
+                                    female_key = key
+                                    break
+
+                            if len(str(female_key)) > 0:
+                                language_pod_dictionary["Pod {0}".format(pod_counter)].update(female_student)
+                                language_pod_dictionary["Pod {0}".format(pod_counter)].pop(male_key)
+
+                                language_pod_dictionary["Pod {0}".format(last_pod_number)].update(male_student)
+                                language_pod_dictionary["Pod {0}".format(last_pod_number)].pop(female_key)
+                                break
+                            else:
+                                print("no more females")
+                                return False
+
+                        elif gender_ratio >= 0.4 and gender_ratio <= 0.6: # between 0.4 and 0.6, inclusive (for edge cases (spanish, other, etc))
+                            # take a male out (pod_counter) and put into last pod (last_pod_number)
+                            # take a female out of last pod (last_pod_number) and put into already balanced ratio pod (pod_counter) 
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(pod_counter)]): # call by index
+                                if language_pod_dictionary["Pod {0}".format(pod_counter)][str(key)]["Gender"] == "M":
+                                    male_student = dict(itertools.islice(language_pod_dictionary["Pod {0}".format(pod_counter)].items(), index, index+1))
+                                    male_key = key
+                                    break
+
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(last_pod_number)]):
+                                if language_pod_dictionary["Pod {0}".format(last_pod_number)][str(key)]["Gender"] == "F":
+                                    female_student = dict(itertools.islice(language_pod_dictionary["Pod {0}".format(last_pod_number)].items(), index, index+1))
+                                    female_key = key
+                                    break
+
+                            if len(str(female_key)) > 0:
+                                language_pod_dictionary["Pod {0}".format(pod_counter)].update(female_student)
+                                language_pod_dictionary["Pod {0}".format(pod_counter)].pop(male_key)
+
+                                language_pod_dictionary["Pod {0}".format(last_pod_number)].update(male_student)
+                                language_pod_dictionary["Pod {0}".format(last_pod_number)].pop(female_key)
+                                break
+                            else:
+                                print("no more females")
+                                return False
+
+                            
+
+
+                        pod_counter+=1
+                        i+=1
+
+
+
+                if last_gender_ratio > 0.6: # more males
+                    while i != len(language_pod_dictionary)-1:
+                        gender_ratio = calculate_gender_ratio(language_pod_dictionary, pod_counter, name)
+                        if gender_ratio == 0.5: #if a pod has 6:6 ratio
+                            # take a female out and put into last pod
+                            # take a male out of last pod and put into 6:6 ratio pod
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(pod_counter)]): # call by index
+                                if language_pod_dictionary["Pod {0}".format(pod_counter)][str(key)]["Gender"] == "F":
+                                    female_student = dict(itertools.islice(language_pod_dictionary["Pod {0}".format(pod_counter)].items(), index, index+1))
+                                    female_key = key
+                                    break
+
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(last_pod_number)]):
+                                if language_pod_dictionary["Pod {0}".format(last_pod_number)][str(key)]["Gender"] == "M":
+                                    male_student = dict(itertools.islice(language_pod_dictionary["Pod {0}".format(last_pod_number)].items(), index, index+1))
+                                    male_key = key
+                                    break
+
+                            if len(str(male_key)) > 0:
+                                language_pod_dictionary["Pod {0}".format(last_pod_number)].update(female_student)
+                                language_pod_dictionary["Pod {0}".format(last_pod_number)].pop(male_key)
+
+                                language_pod_dictionary["Pod {0}".format(pod_counter)].update(male_student)
+                                language_pod_dictionary["Pod {0}".format(pod_counter)].pop(female_key)
+                                break
+                            else:
+                                print("no more males")
+                                return False
+
+                        elif gender_ratio >= 0.4 and gender_ratio <= 0.6: # in between 0.4 and 0.6, inclusive
+                            # take a female out and put into last pod
+                            # take a male out of last pod and put into already balanced ratio pod
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(pod_counter)]): # call by index
+                                if language_pod_dictionary["Pod {0}".format(pod_counter)][str(key)]["Gender"] == "F":
+                                    female_student = dict(itertools.islice(language_pod_dictionary["Pod {0}".format(pod_counter)].items(), index, index+1))
+                                    female_key = key
+                                    break
+
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(last_pod_number)]):
+                                if language_pod_dictionary["Pod {0}".format(last_pod_number)][str(key)]["Gender"] == "M":
+                                    male_student = dict(itertools.islice(language_pod_dictionary["Pod {0}".format(last_pod_number)].items(), index, index+1))
+                                    male_key = key
+                                    break
+
+                            if len(str(male_key)) > 0:
+                                language_pod_dictionary["Pod {0}".format(last_pod_number)].update(female_student)
+                                language_pod_dictionary["Pod {0}".format(last_pod_number)].pop(male_key)
+
+                                language_pod_dictionary["Pod {0}".format(pod_counter)].update(male_student)
+                                language_pod_dictionary["Pod {0}".format(pod_counter)].pop(female_key)
+                                break
+                            else:
+                                print("no more males")
+                                return False
+
+
+
+
+                            
+
+                        pod_counter+=1
+                        i+=1
                     
 
-                return language_pod_dictionary
+
+
+            def final_pod_gender_redistribution(language_pod_dictionary, name):
+                if name == "English":
+                    last_pod_number = len(english_pod_dictionary)
+                elif name == "Spanish":
+                    last_pod_number = len(english_pod_dictionary) + len(spanish_pod_dictionary)
+                elif name == "Other":
+                    last_pod_number = len(english_pod_dictionary) + len(spanish_pod_dictionary) + len(other_pod_dictionary)
+
+
+                gender_ratio = calculate_gender_ratio(language_pod_dictionary, last_pod_number, name)
+                if (gender_ratio < 0.4 or gender_ratio > 0.6):
+                    final_pod_gender_redistributor(language_pod_dictionary, last_pod_number, name)
+                    if final_pod_gender_redistributor(language_pod_dictionary, last_pod_number, name) == False:
+                        print("error")
+                    
+
+
+            fix_gender_ratio(english_pod_dictionary, "English")
+            fix_gender_ratio(spanish_pod_dictionary, "Spanish")
+            fix_gender_ratio(other_pod_dictionary, "Other")
+            #show_ratios()
+            final_pod_gender_redistribution(english_pod_dictionary, "English")
+            final_pod_gender_redistribution(spanish_pod_dictionary, "Spanish")
+            final_pod_gender_redistribution(other_pod_dictionary, "Other")
+            #print("\nAfter gender redistribution:")
+            #show_ratios()
+
+            # fix new group ratios
+            #--------------------------------------------------------------
+            # determine what language group
+            def get_newgroup_language(language_pod_dictionary, pod_number):
+                for index, value in enumerate(language_pod_dictionary["Pod {0}".format(pod_number)]):
+                    language = str(language_pod_dictionary["Pod {0}".format(pod_number)][value]["Description_HL"])
+                    break
+
+                if language == "English":
+                    language_group = "English"
+
+                elif language == "Spanish":
+                    language_group = "Spanish"
+
+                else:
+                    language_group = "Other"
+
+
+                return language_group
+
+            def redistribute_new_group(language_pod_dictionary, pod_number, name):
+                print(pod_number)
+                newgroup_gender_ratio = calculate_gender_ratio(language_pod_dictionary, pod_number, name)
+                i = 0
+
+                if get_newgroup_language(language_pod_dictionary, pod_number) == "English":
+                    other_pod_number = 1
+                    name = "English"
+                    other_language_pod_dictionary = english_pod_dictionary
+                if get_newgroup_language(language_pod_dictionary, pod_number) == "Spanish":
+                    other_pod_number = len(english_pod_dictionary) + 1
+                    name = "Spanish"
+                    other_language_pod_dictionary = spanish_pod_dictionary
+                if get_newgroup_language(language_pod_dictionary, pod_number) == "Other":
+                    other_pod_number = len(english_pod_dictionary) + len(spanish_pod_dictionary) + 1
+                    name = "Other"
+                    other_language_pod_dictionary = other_pod_dictionary
+
+                if newgroup_gender_ratio < 0.4:
+                    while i != len(other_language_pod_dictionary):
+                        gender_ratio = calculate_gender_ratio(other_language_pod_dictionary, other_pod_number, name)
+                        if gender_ratio == 0.5:
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(pod_number)]): # call by index
+                                if language_pod_dictionary["Pod {0}".format(pod_number)][str(key)]["Gender"] == "F":
+                                    female_student = dict(itertools.islice(language_pod_dictionary["Pod {0}".format(pod_number)].items(), index, index+1))
+                                    female_key = key
+                                    break
+
+                            for index, key in enumerate(other_language_pod_dictionary["Pod {0}".format(other_pod_number)]):
+                                if other_language_pod_dictionary["Pod {0}".format(other_pod_number)][str(key)]["Gender"] == "M":
+                                    male_student = dict(itertools.islice(other_language_pod_dictionary["Pod {0}".format(other_pod_number)].items(), index, index+1))
+                                    male_key = key
+                                    break
+
+                            if len(str(male_key)) > 0:
+                                language_pod_dictionary["Pod {0}".format(pod_number)].update(male_student)
+                                language_pod_dictionary["Pod {0}".format(pod_number)].pop(female_key)
+
+                                other_language_pod_dictionary["Pod {0}".format(other_pod_number)].update(female_student)
+                                other_language_pod_dictionary["Pod {0}".format(other_pod_number)].pop(male_key)
+                                break
+                            else:
+                                print("no more males")
+                                return False
+
+                        elif gender_ratio >= 0.4 and gender_ratio <= 0.6: # between 0.4 and 0.6, inclusive (for edge cases (spanish, other, etc))
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(pod_number)]): # call by index
+                                if language_pod_dictionary["Pod {0}".format(pod_number)][str(key)]["Gender"] == "F":
+                                    female_student = dict(itertools.islice(language_pod_dictionary["Pod {0}".format(pod_number)].items(), index, index+1))
+                                    female_key = key
+                                    break
+
+                            for index, key in enumerate(other_language_pod_dictionary["Pod {0}".format(other_pod_number)]):
+                                if other_language_pod_dictionary["Pod {0}".format(other_pod_number)][str(key)]["Gender"] == "M":
+                                    male_student = dict(itertools.islice(other_language_pod_dictionary["Pod {0}".format(other_pod_number)].items(), index, index+1))
+                                    male_key = key
+                                    break
+
+                            if len(str(male_key)) > 0:
+                                language_pod_dictionary["Pod {0}".format(pod_number)].update(male_student)
+                                language_pod_dictionary["Pod {0}".format(pod_number)].pop(female_key)
+
+                                other_language_pod_dictionary["Pod {0}".format(other_pod_number)].update(female_student)
+                                other_language_pod_dictionary["Pod {0}".format(other_pod_number)].pop(male_key)
+                                break
+                            else:
+                                print("no more males")
+                                return False
+                        else:
+                            other_pod_number+=1
+                            i+=1
+                            if i == len(other_language_pod_dictionary):
+                                return False
+
+                        
+
+                        
+                if newgroup_gender_ratio > 0.6:
+                    while i != len(other_language_pod_dictionary):
+                        gender_ratio = calculate_gender_ratio(other_language_pod_dictionary, other_pod_number, name)
+                        if gender_ratio == 0.5:
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(pod_number)]): # call by index
+                                if language_pod_dictionary["Pod {0}".format(pod_number)][str(key)]["Gender"] == "M":
+                                    male_student = dict(itertools.islice(language_pod_dictionary["Pod {0}".format(pod_number)].items(), index, index+1))
+                                    male_key = key
+                                    break
+
+                            for index, key in enumerate(other_language_pod_dictionary["Pod {0}".format(other_pod_number)]):
+                                if other_language_pod_dictionary["Pod {0}".format(other_pod_number)][str(key)]["Gender"] == "F":
+                                    female_student = dict(itertools.islice(other_language_pod_dictionary["Pod {0}".format(other_pod_number)].items(), index, index+1))
+                                    female_key = key
+                                    break
+
+                            if len(str(female_key)) > 0:
+                                language_pod_dictionary["Pod {0}".format(pod_number)].update(female_student)
+                                language_pod_dictionary["Pod {0}".format(pod_number)].pop(male_key)
+
+                                other_language_pod_dictionary["Pod {0}".format(other_pod_number)].update(male_student)
+                                other_language_pod_dictionary["Pod {0}".format(other_pod_number)].pop(female_key)
+                                break
+                            else:
+                                print("no more females")
+                                return False
+
+                        elif gender_ratio >= 0.4 and gender_ratio <= 0.6: # between 0.4 and 0.6, inclusive (for edge cases (spanish, other, etc))
+                            for index, key in enumerate(language_pod_dictionary["Pod {0}".format(pod_number)]): # call by index
+                                if language_pod_dictionary["Pod {0}".format(pod_number)][str(key)]["Gender"] == "M":
+                                    male_student = dict(itertools.islice(language_pod_dictionary["Pod {0}".format(pod_number)].items(), index, index+1))
+                                    male_key = key
+                                    break
+
+                            for index, key in enumerate(other_language_pod_dictionary["Pod {0}".format(other_pod_number)]):
+                                if other_language_pod_dictionary["Pod {0}".format(other_pod_number)][str(key)]["Gender"] == "F":
+                                    female_student = dict(itertools.islice(other_language_pod_dictionary["Pod {0}".format(other_pod_number)].items(), index, index+1))
+                                    female_key = key
+                                    break
+
+                            if len(str(female_key)) > 0:
+                                language_pod_dictionary["Pod {0}".format(pod_number)].update(female_student)
+                                language_pod_dictionary["Pod {0}".format(pod_number)].pop(male_key)
+
+                                other_language_pod_dictionary["Pod {0}".format(other_pod_number)].update(male_student)
+                                other_language_pod_dictionary["Pod {0}".format(other_pod_number)].pop(female_key)
+                                break
+                            else:
+                                print("no more females")
+                                return False
+
+                        else:
+                            other_pod_number+=1
+                            i+=1
+                            if i == len(other_language_pod_dictionary):
+                                return False
+
+
+
+
+
+                new_gender_ratio = calculate_gender_ratio(language_pod_dictionary, pod_number, "New")
+
+                return new_gender_ratio
+                
+
+            # swap from same language group
+            def fix_new_group_gender_ratio(language_pod_dictionary):
+                pod_number = len(english_pod_dictionary) + len(spanish_pod_dictionary) + len(other_pod_dictionary) + 1
+                
+            
+                i = 0
+                while i != len(language_pod_dictionary):
+                    gender_ratio = calculate_gender_ratio(language_pod_dictionary, pod_number, "New")
+                    while True:
+                        if (gender_ratio < 0.4 or gender_ratio > 0.6):
+                            gender_ratio = redistribute_new_group(language_pod_dictionary, pod_number, "New")
+                            if redistribute_new_group(language_pod_dictionary, pod_number, "New") == False:
+                                print("skip")
+                                break
+                        else:
+                            break
+                        
+
+                    pod_number+=1
+                    i+=1
+                
+
+            fix_new_group_gender_ratio(newly_add_pods_dict)  
+            #show_ratios()
+
+
 
             # FIXING SCHOOL RATIO (IF NEEDED)
             #---------------------------------------------------------------------
             def fix_school_ratio(language_pod_dictionary, pod_number, name):
-                
+                school_ratio = calculate_school_ratio(language_pod_dictionary, pod_number, name)
 
                 return language_pod_dictionary
+
+
 
 
 
@@ -1342,16 +2261,30 @@ class PodAdmin(admin.ModelAdmin):
 
             number_of_total_pod_groups = len(all_pod_groups_dictionary)
 
+            i = 0
+            pod_counter = 1
+            total_students = 0
+            while i != len(all_pod_groups_dictionary):
+                total_students += len(all_pod_groups_dictionary["Pod {0}".format(pod_counter)])
+                i += 1
+                pod_counter += 1
+
+            #print(total_students)
+
             #print("\n\n",all_pod_groups_dictionary)
+
             
             
             i = 1
             while i <= number_of_total_pod_groups:
                 created = Pod.objects.update_or_create(
                      pod_group_number = "Pod {0}".format(i),
-                     pod_leader = "Pod Leader",
-                     pod_room_number = random.randint(100, 999),
-                     pod_group_members = all_pod_groups_dictionary["Pod {0}".format(i)]
+                     pod_leader = "Pod Leader", #change
+                     pod_room_number = random.randint(100, 999), #change
+                     pod_group_members = all_pod_groups_dictionary["Pod {0}".format(i)],
+                     gender_ratio = str(calculate_gender_ratio(all_pod_groups_dictionary, i, "All")) + " (M:F)",
+                     school_ratio = calculate_school_ratio(all_pod_groups_dictionary, i, "All"),
+                     total_students = len(all_pod_groups_dictionary["Pod {0}".format(i)]),
 
                 )
                 i += 1
