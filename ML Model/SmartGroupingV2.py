@@ -15,8 +15,8 @@ import itertools
 import threading
 from threading import Thread
 
-file_path_train = 'training_data.csv'
-file_path = 'student_data.csv'
+file_path_train = 'Data.csv'
+file_path = 'Evaluate.csv'
 
 # NORMALIZING TRAINING DATA
 #---------------------------------------------------------------------
