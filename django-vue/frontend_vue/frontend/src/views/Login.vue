@@ -4,7 +4,7 @@
       <div class="col-md-5 p-3 login justify-content-md-center"><hr>
         <img src="https://mvhs.mvla.net/images/logo.png" alt="mvhs-logo" class="i">
         <br><br>
-        <h1 class="h3 mb-3 font-weight-normal text-center" style="font-family:Arial">Ambassador Login</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-center" style="font-family:Cambria"><b>Ambassador Login</b></h1>
         <br>
         
         <form v-on:submit.prevent="login">

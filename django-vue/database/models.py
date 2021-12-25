@@ -16,7 +16,7 @@ class Pod(models.Model):
   pod_group_members = models.TextField()
   additional_notes = models.TextField(blank=True)
   gender_ratio = models.CharField(max_length=200,blank=True)
-  school_ratio = models.CharField(max_length=200,blank=True)
+  school_standard_deviation = models.CharField(max_length=200,blank=True)
   total_students = models.CharField(max_length=200,blank=True)
   
 

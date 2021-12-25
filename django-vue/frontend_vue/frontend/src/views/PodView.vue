@@ -10,7 +10,7 @@
           <div v-for="pod in APIData.slice(pod_number-1,pod_number)" :key="pod.id" class="">
             <h1 class="" style="margin:4vw 0 0 0;font-family:Cambria">{{pod.pod_group_number}}</h1>
             <p>Room: {{pod.pod_room_number}}</p>
-            <p>Demographic: <b>Gender Ratio:</b> {{pod.gender_ratio}} | <b>School Ratio:</b> {{pod.school_ratio}} | <b>Total Students:</b> {{pod.total_students}}</p>
+            <p>Demographic: <b>Gender Ratio:</b> {{pod.gender_ratio}} | <b>School Standard Deviation:</b> {{pod.school_standard_deviation}} | <b>Total Students:</b> {{pod.total_students}}</p>
             
             <table id="students">
               <tr>
