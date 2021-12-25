@@ -62,8 +62,7 @@ class PodAdmin(admin.ModelAdmin):
         return new_urls + urls
     
     def create_pod(self, request):
-        if request.method == "POST":
-
+        if request.method == "POST":  
             class CreatePods:
                 train_file_path = 'training_data.csv'
                 test_file_path = 'student_data.csv'
