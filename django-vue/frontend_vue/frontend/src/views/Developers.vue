@@ -1,5 +1,5 @@
 <template>
-  <div id="developers">
+  <div id="developers" class="fontMode">
     <div class="album py-5">
     <div class="container">
         <h1 style="font-family:Cambria"><i class="fas fa-users-cog" style="font-size:32px"></i> <b>Developers</b></h1>
@@ -24,4 +24,8 @@ export default {
 .size{
   font-size: 30px;
 }
+.fontMode{
+  color: var(--text-primary-color);
+}
+
 </style>

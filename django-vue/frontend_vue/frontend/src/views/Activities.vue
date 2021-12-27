@@ -1,5 +1,5 @@
 <template>
-  <div id="activities">
+  <div id="activities" class="fontMode">
     <div class="album py-5">
     <div class="container">
         <h1 style="font-family:Cambria"><i class="fas fa-gamepad" style="font-size:32px"></i> <b>Activities</b></h1>
@@ -48,5 +48,9 @@ export default {
 </script>
 
 <style>
+.fontMode{
+  color: var(--text-primary-color);
+}
+
 </style>
 

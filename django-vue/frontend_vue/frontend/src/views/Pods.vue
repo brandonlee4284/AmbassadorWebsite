@@ -1,22 +1,23 @@
 <template>
-  <div class="pods mode">
+  <div class="pods fontMode">
     <div class="album py-5">
         <div class="container">
           <div class="row">
             <h1 style="font-family:Cambria"><i class="fas fa-users"></i> <b>Assigned Pods</b></h1>
+            <!--
             <div>
               <form class="search">
                 <input type="text" placeholder="Search Pod Group.." name="search" style="position:relative;left:-10px">
-                <button type="">Search</button>
+                <button type="" class="dropbtn buttonColor">Search</button>
               </form>
               
             </div>
-            
+            -->
             
             <div>
               <div class="dropdown">
-                <button class="dropbtn">Sort By...</button>
-                <div class="dropdown-content">
+                <button class="dropbtn buttonColor">Sort By</button>
+                <div class="dropdown-content" style="color:black">
                   <a>Pod Group Number</a>
                   <a>Pod Leader (Alphabetical)</a>
                 </div>
@@ -24,12 +25,12 @@
             </div>
             
             <div v-for="pod in APIData" :key="pod.id" class="col-md-4">
-              <div class="card mb-4 box-shadow mode">
+              <div class="card mb-4 box-shadow buttonColor">
               <router-link :to = "{ name:'pod-view' }" exact>
                 <img class="card-img-top" src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80" alt="Card image cap" @click="getNumber(pod.pod_group_number)">
               </router-link>
                 <div class="card-body">
-                    <h4><a><router-link :to = "{ name:'pod-view' }" exact class="font" @click="getNumber(pod.pod_group_number)">
+                    <h4><a><router-link :to = "{ name:'pod-view' }" exact class="fontMode" @click="getNumber(pod.pod_group_number)">
                       {{pod.pod_group_number}}
                     </router-link></a></h4>
                     <p class="card-text">{{pod.pod_leader}}</p>
@@ -164,8 +165,11 @@
 .mode {
     background-color: var(--background-color-secondary);
 }
-.font{
+.fontMode{
   color: var(--text-primary-color);
+}
+.buttonColor{
+  background-color: var(--background-color-third);
 }
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="pod-view">
+  <div class="pod-view fontMode">
     <div class="album py-5">
       <div class="container">
         <div class="row">
@@ -99,11 +99,14 @@ export default {
 #students th {
   padding: 12px 20px;
   text-align: center;
-  background-color: #FFD700;
-  color: black;
+  background-color: #2c3e50;
+  color: white;
 }
 .table-mode{
   background-color: var(--background-color-secondary);
+  color: var(--text-primary-color);
+}
+.fontMode{
   color: var(--text-primary-color);
 }
 

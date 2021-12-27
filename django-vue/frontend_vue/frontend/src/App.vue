@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="mode">
+  <div id="app" class="modeApp">
 
     
     <Navbar />
@@ -164,20 +164,22 @@ export default {
   :root {
     --background-color-primary: #ebebeb;
     --background-color-secondary: #fafafa;
+    --background-color-third: #1e1e1e;
     --accent-color: #cacaca;
-    --text-primary-color: #222;
+    --text-primary-color: #2c3e50;
     --element-size: 4rem;
   }
 
   :root.dark-theme {
     --background-color-primary: #1e1e1e;
     --background-color-secondary: #2d2d30;
+    --background-color-third: #2c3e50;
     --accent-color: #3f3f3f;
     --text-primary-color: #ddd;
   }
 
 
-  .mode {
+  .modeApp {
     background-color: var(--background-color-primary);
   }
  

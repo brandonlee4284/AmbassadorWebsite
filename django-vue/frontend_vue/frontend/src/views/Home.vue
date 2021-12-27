@@ -1,7 +1,7 @@
 <template>
     <div id="home">
        <div class="album py-5">
-        <div class="container">
+        <div class="container fontMode">
             <h1 style="font-family:Cambria"><i class="fas fa-calendar-alt" style="font-size:32px"></i><b> Upcoming Events</b></h1>
             
             <!--<div v-for="homeImage in APIData1" :key="homeImage.id" class="col-md-6">
@@ -16,7 +16,7 @@
             </a>
             <br>
             <div class="dropdown">
-              <button class="dropbtn">Filter</button>
+              <button class="dropbtn buttonColor">Filter</button>
               <div class="dropdown-content">
                 <a href="#">Latest to Oldest</a>
                 <a href="#">Oldest to Latest</a>
@@ -129,6 +129,13 @@ img{
   transition: 0.3s;
 }
 
+.fontMode{
+  color: var(--text-primary-color);
+}
+
+.buttonColor{
+  background-color: var(--background-color-third);
+}
 
 
 
