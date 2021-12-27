@@ -4,7 +4,7 @@
   
     <div class="sidebar" :style="{ width: sidebarWidth }">
     <h1>
-      <span v-if="collapsed" style="font-family: Copperplate;">
+      <span v-if="collapsed" style="font-family: Arial;">
         <div><a><img src="https://avatars.githubusercontent.com/u/10067543?s=280&v=4" alt="mvhs-logo" width = "30" height = "30"></a></div>
       
       </span>
@@ -12,28 +12,22 @@
     </h1>
 
     <div v-if="accessToken!=null">
-      <SidebarLink to="/" icon="fas fa-home" @click="scrollToTop()">Home</SidebarLink>
+      <SidebarLink to="/" icon="fas fa-home" @click="scrollToTop()"><b>Home</b></SidebarLink>
       <br>
-      <SidebarLink to="/pods" icon="fas fa-users" @click="scrollToTop()">Pods</SidebarLink>
+      <SidebarLink to="/pods" icon="fas fa-users" @click="scrollToTop()"><b>Pods</b></SidebarLink>
       <br>
-      <SidebarLink to="/schedule" icon="fas fa-calendar" @click="scrollToTop()">Schedule</SidebarLink>
+      <SidebarLink to="/schedule" icon="fas fa-calendar" @click="scrollToTop()"><b>Schedule</b></SidebarLink>
       <br>
-      <SidebarLink to="/resources" icon="fas fa-book" @click="scrollToTop()">Resources</SidebarLink>
+      <SidebarLink to="/resources" icon="fas fa-book" @click="scrollToTop()"><b>Resources</b></SidebarLink>
       <br><br><br><br><br><br><br><br><br><br><br><br><br>
-      <SidebarLink to="/log-out" icon="fas fa-sign-out-alt">Logout</SidebarLink>
+      <SidebarLink to="/log-out" icon="fas fa-sign-out-alt"><b>Logout</b></SidebarLink>
     </div>
     <div v-if="accessToken==null">
-      <SidebarLink to="/log-in" icon="fas fa-sign-in-alt" @click="scrollToTop()">Login</SidebarLink>
+      <SidebarLink to="/log-in" icon="fas fa-sign-in-alt" @click="scrollToTop()"><b>Login</b></SidebarLink>
     </div>
 
 
-    <div 
-    v-if="$isMobile()" 
-    >
-    </div>
-    
-
-
+    <div v-if="$isMobile()" />
 
     <div v-else>
       <span 
@@ -111,5 +105,8 @@ import { collapsed, toggleSidebar, sidebarWidth } from './state'
 .rotate-180 {
   transform: rotate(180deg);
   transition: 0.2s linear;
+}
+.font{
+  color: black;
 }
 </style>

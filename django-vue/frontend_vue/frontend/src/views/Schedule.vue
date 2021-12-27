@@ -1,23 +1,23 @@
 <template>
   <div id="schedule">
     <br> 
-    <div class="album py-5 bg-light">
+    <div class="album py-5">
       <div class="container">
         <div class="row">
-          <div class="card mb-1 box-shadow">
+          <div class="card mb-1 box-shadow mode_schedule" style="color:black">
             <br><br>
-            <h2 style="font-family:Cambria">Schedule</h2>
+            <h2 style="font-family:Cambria; font-size: 25px" class="font-mode">Schedule</h2>
             <br><br>
             <div>
               <div>
-                <span class="activity-m">Activity</span>
-                <span class="time time-m">Time</span>
+                <span class="activity-m font-mode">Activity</span>
+                <span class="time time-m font-mode">Time</span>
               </div>
             </div>
             <div v-for="schedule in APIData" :key="schedule.id" >
               <hr><br><br><br>
-              <span class="activity-m"><a><router-link :to = "{ name:'activities' }" exact>{{schedule.activity}}</router-link></a></span>
-              <span class="time time-m"><a>{{schedule.time_slot}}</a></span>
+              <span class="activity-m font-mode"><a><router-link :to = "{ name:'activities' }" exact>{{schedule.activity}}</router-link></a></span>
+              <span class="time time-m font-mode"><a>{{schedule.time_slot}}</a></span>
               <br><br><br><br>
             </div>
           </div>
@@ -103,5 +103,13 @@ h2{
   padding-right: 5vw;
 }
 
+.mode_schedule{
+  background-color: var(--background-color-secondary);
+  
+}
+
+.font-mode{
+  color: var(--text-primary-color);
+}
  
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <div><br><br>
+  <div class="outer-mode"><br><br>
   <div class="container text-dark">
-      <div class="col-md-5 p-3 login justify-content-md-center"><hr>
+      <div class="col-md-5 p-3 login justify-content-md-center mode"><hr>
         <img src="https://mvhs.mvla.net/images/logo.png" alt="mvhs-logo" class="i">
         <br><br>
         <h1 class="h3 mb-3 font-weight-normal text-center" style="font-family:Cambria"><b>Ambassador Login</b></h1>
@@ -23,6 +23,7 @@
         <br><br><br>
         <hr>
       </div>
+      <br><br><br><br><br><br><br><br>
     </div>
   </div>
 </template>
@@ -79,11 +80,16 @@ export default {
   width: 50%;
   
 }
-.login:hover {
-  box-shadow: 0 20px 20px 0 rgba(0,0,0,0.2);
-}
+
 .incorrect{
   color: red;
+}
+.mode{
+  background-color: var(--background-color-secondary);
+  color: var(--text-primary-color);
+}
+.outer-mode{
+  background-color: var(--background-color-primary);
 }
 
 

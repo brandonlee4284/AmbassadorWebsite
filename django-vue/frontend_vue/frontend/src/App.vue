@@ -1,12 +1,17 @@
 <template>
-  <div id="app">
+  <div id="app" class="mode">
+
     
     <Navbar />
     <div :style="{ 'margin-left': sidebarWidth }">
+
+
     <router-view />
+
+    <theme-button class="d-flex justify-content-center justify-content-lg-between p-4"/>
     
 
-    <footer class="text-center text-lg-start bg-light text-muted" v-if="accessToken!=null">
+    <footer class="text-center text-lg-start text-muted" v-if="accessToken!=null">
       <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
         <div>
           <a href="https://www.facebook.com/MountainViewSpartans/" target="_blank" class="me-4 text-reset">
@@ -29,7 +34,7 @@
       <div class="row mt-3">
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <h6 class="text-uppercase fw-bold mb-4">
-            <i></i>Mountain View Highschool
+            <i></i>Mountain View High School
           </h6>
           <p><i class="fas fa-globe"></i>
             School Website:
@@ -71,6 +76,7 @@
             <p>
               <a><router-link :to = "{ name:'developers' }" class="text-reset">Developers</router-link></a>
             </p>
+          
             <p>
               <a><router-link :to = "{ name:'log-out' }" style="color:red">Logout</router-link></a>
               
@@ -111,10 +117,13 @@
 import { mapState } from 'vuex'
 import Navbar from './components/Navbar'
 import { sidebarWidth } from '@/components/state'
+import ThemeButton from "@/components/ThemeButton.vue";
+
 export default {
   name: 'App',
   components: {
       Navbar,
+      ThemeButton,
   },
   
   computed: mapState(['accessToken']),
@@ -124,26 +133,23 @@ export default {
     
   },
   
-  
+
   
 }
 </script>
 
 
 <style>
+  html,
   body {
     margin: 0;
     padding: 0;
-    background-color:#f8f8f8!important;
   }
   .toright{
     position: relative;
     right: 30px;
   }
-  #app {
-    font-family: Helvetica, Arial, sans-serif;
-    color: #2c3e50;
-  }
+  
   #nav {
     padding: 30px;
   }
@@ -154,4 +160,30 @@ export default {
   #nav a.router-link-exact-active {
     color: #f8f8f8;
   }
+  
+  :root {
+    --background-color-primary: #ebebeb;
+    --background-color-secondary: #fafafa;
+    --accent-color: #cacaca;
+    --text-primary-color: #222;
+    --element-size: 4rem;
+  }
+
+  :root.dark-theme {
+    --background-color-primary: #1e1e1e;
+    --background-color-secondary: #2d2d30;
+    --accent-color: #3f3f3f;
+    --text-primary-color: #ddd;
+  }
+
+
+  .mode {
+    background-color: var(--background-color-primary);
+  }
+ 
+
+  
+
+
+
 </style>

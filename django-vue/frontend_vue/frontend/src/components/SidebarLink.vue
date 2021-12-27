@@ -48,7 +48,7 @@ export default {
   height: 1.5em;
   color: black;
   text-decoration: none;
-  font-family: Copperplate;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 15px;
 }
 .link:hover {

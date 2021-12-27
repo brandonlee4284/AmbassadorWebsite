@@ -1,6 +1,6 @@
 <template>
-  <div class="pods">
-    <div class="album py-5 bg-light">
+  <div class="pods mode">
+    <div class="album py-5">
         <div class="container">
           <div class="row">
             <h1 style="font-family:Cambria"><i class="fas fa-users"></i> <b>Assigned Pods</b></h1>
@@ -24,12 +24,12 @@
             </div>
             
             <div v-for="pod in APIData" :key="pod.id" class="col-md-4">
-              <div class="card mb-4 box-shadow">
+              <div class="card mb-4 box-shadow mode">
               <router-link :to = "{ name:'pod-view' }" exact>
                 <img class="card-img-top" src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80" alt="Card image cap" @click="getNumber(pod.pod_group_number)">
               </router-link>
                 <div class="card-body">
-                    <h4><a><router-link :to = "{ name:'pod-view' }" exact class="text-secondary" @click="getNumber(pod.pod_group_number)">
+                    <h4><a><router-link :to = "{ name:'pod-view' }" exact class="font" @click="getNumber(pod.pod_group_number)">
                       {{pod.pod_group_number}}
                     </router-link></a></h4>
                     <p class="card-text">{{pod.pod_leader}}</p>
@@ -160,5 +160,12 @@
 
 .dropdown:hover .dropbtn {background-color: gray;}
 
+
+.mode {
+    background-color: var(--background-color-secondary);
+}
+.font{
+  color: var(--text-primary-color);
+}
 
 </style>

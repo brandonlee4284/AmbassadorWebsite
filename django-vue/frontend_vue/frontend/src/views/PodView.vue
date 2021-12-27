@@ -1,6 +1,6 @@
 <template>
   <div class="pod-view">
-    <div class="album py-5 bg-light">
+    <div class="album py-5">
       <div class="container">
         <div class="row">
           <!--
@@ -12,7 +12,7 @@
             <p>Room: {{pod.pod_room_number}}</p>
             <p>Demographic: <b>Gender Ratio:</b> {{pod.gender_ratio}} | <b>School Standard Deviation:</b> {{pod.school_standard_deviation}} | <b>Total Students:</b> {{pod.total_students}}</p>
             
-            <table id="students">
+            <table id="students" class="table-mode">
               <tr>
                 <th>Pod Leader(s)</th>
                 <th>Members</th>
@@ -91,15 +91,20 @@ export default {
   padding: 8px;
 }
 
+/*
 #students tr:nth-child(even){background-color: #f2f2f2;}
 
 #students tr:hover {background-color: #ddd;}
-
+*/
 #students th {
   padding: 12px 20px;
   text-align: center;
   background-color: #FFD700;
   color: black;
+}
+.table-mode{
+  background-color: var(--background-color-secondary);
+  color: var(--text-primary-color);
 }
 
 </style>

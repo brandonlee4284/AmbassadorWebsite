@@ -15,15 +15,14 @@ import itertools
 import threading
 from threading import Thread
 
-trainData_file_path = 'Data.csv'
-testData_file_path = 'Evaluate.csv'
-
+train_file_path = 'Data.csv'
+test_file_path = 'Evaluate.csv'
 
 class CreatePods:
 
     # NORMALIZING TRAINING DATA
     #---------------------------------------------------------------------
-    file_path_train = trainData_file_path
+    file_path_train = train_file_path
 
     student_train_data = pd.read_csv(file_path_train)
 
@@ -50,8 +49,8 @@ class CreatePods:
     # cleaning data
     student_training_data.drop(student_training_data.columns.difference(['Last Schl', 'Gender','Description_HL', 'Group Memberships?', 'POD GROUP']), axis=1, inplace=True)
 
-    print("\nModified Training Data: ")
-    print(student_training_data)
+    #print("\nModified Training Data: ")
+    #print(student_training_data)
 
 
     # BUILDING TRAINING MODEL
@@ -89,7 +88,7 @@ class CreatePods:
 
     # NORMALIZING TESTING DATA
     #---------------------------------------------------------------------
-    file_path = testData_file_path
+    file_path = test_file_path
 
     student_test_data = pd.read_csv(file_path)
 
@@ -116,8 +115,8 @@ class CreatePods:
     student_testing_data.drop(student_testing_data.columns.difference(['Last Schl', 'Gender','Description_HL', 'Group Memberships?', 'POD GROUP']), axis=1, inplace=True)
 
 
-    print("\nModified Testing Data: ")
-    print(student_testing_data)
+    #print("\nModified Testing Data: ")
+    #print(student_testing_data)
 
 
     # TESTING MODEL
@@ -132,12 +131,12 @@ class CreatePods:
     student_testing_labels = student_model.predict(student_testing_data)
 
 
-    print("\nData: \n{}".format(student_testing_data))
-    print('\nNot ELD: 0, ELD: 1') 
+    #print("\nData: \n{}".format(student_testing_data))
+    #print('\nNot ELD: 0, ELD: 1') 
 
 
-    print("\nPod Group # Predictions (Not rounded): \n{}".format(abs(student_testing_labels)))
-    print('\nEnglish Group: 0, Spanish Group: 1, Mandarin Group: 2, Other Group: 3') 
+    #print("\nPod Group # Predictions (Not rounded): \n{}".format(abs(student_testing_labels)))
+    #print('\nEnglish Group: 0, Spanish Group: 1, Mandarin Group: 2, Other Group: 3') 
 
     # CREATING POD GROUPS
     #---------------------------------------------------------------------
@@ -147,7 +146,7 @@ class CreatePods:
     predictions = abs(student_testing_labels.round())
     student_final_data['POD GROUP'] = predictions
 
-    print(student_final_data)
+    #print(student_final_data)
 
     # adding students to dictionary
     student_dictionary = student_final_data.to_dict(orient="index")
@@ -1778,12 +1777,12 @@ class CreatePods:
         new_mean = (num1 + num2 + num3 + num4)/4
 
         school_standard_deviation = sqrt(new_mean)
-        print(f"School Standard Deviation: {round(school_standard_deviation,2)} \n\n")
+        print(f"School Standard Deviation: {round(school_standard_deviation,2)}")
 
 
         return school_standard_deviation
 
-    print("\nPod Gender and School Ratios:" )
+    #print("\nPod Gender and School Ratios:" )
     def show_ratios(self):
         for x in range(len(self.english_pod_dictionary)):
             print(f"Pod {x+1} (English): ")
@@ -2070,9 +2069,9 @@ class CreatePods:
 
         gender_ratio = self.calculate_gender_ratio(language_pod_dictionary, last_pod_number, name)
         if (gender_ratio < 0.4 or gender_ratio > 0.6):
-           self.final_pod_gender_redistributor(language_pod_dictionary, last_pod_number, name)
-           if self.final_pod_gender_redistributor(language_pod_dictionary, last_pod_number, name) == False:
-                print("error")
+            self.final_pod_gender_redistributor(language_pod_dictionary, last_pod_number, name)
+        if self.final_pod_gender_redistributor(language_pod_dictionary, last_pod_number, name) == False:
+            print("error")
             
 
 
@@ -2733,7 +2732,7 @@ other_over_threshold = run.count_std_above_threshold(run.other_pod_dictionary, "
 if len(run.newly_add_pods_dict) != 0:
     new_over_threshold = run.count_std_above_threshold(run.newly_add_pods_dict, "New")
 
-run.show_ratios()
+#run.show_ratios()
 print("# of Pods above 2 STDs: ")
 print(f"English: {english_over_threshold}")
 print(f"Spanish: {spanish_over_threshold}")

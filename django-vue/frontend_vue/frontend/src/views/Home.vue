@@ -1,6 +1,6 @@
 <template>
-    <div id="home" class="">
-       <div class="album py-5 bg-light">
+    <div id="home">
+       <div class="album py-5">
         <div class="container">
             <h1 style="font-family:Cambria"><i class="fas fa-calendar-alt" style="font-size:32px"></i><b> Upcoming Events</b></h1>
             
@@ -128,6 +128,7 @@ img:hover{
 img{
   transition: 0.3s;
 }
+
 
 
 
