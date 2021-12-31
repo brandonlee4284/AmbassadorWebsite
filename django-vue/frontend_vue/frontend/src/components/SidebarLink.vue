@@ -46,7 +46,7 @@ export default {
   padding: 0.4em;
   border-radius: 0.25em;
   height: 1.5em;
-  color: black;
+  color: #1e1e1e;
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 15px;

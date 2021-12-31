@@ -133,6 +133,7 @@ export default {
     
   },
   
+  
 
   
 }
@@ -165,6 +166,7 @@ export default {
     --background-color-primary: #ebebeb;
     --background-color-secondary: #fafafa;
     --background-color-third: #1e1e1e;
+    --background-color-pods: #fafafa;
     --accent-color: #cacaca;
     --text-primary-color: #2c3e50;
     --element-size: 4rem;
@@ -174,13 +176,19 @@ export default {
     --background-color-primary: #1e1e1e;
     --background-color-secondary: #2d2d30;
     --background-color-third: #2c3e50;
+    --background-color-pods: #2c3e50;
     --accent-color: #3f3f3f;
     --text-primary-color: #ddd;
+    
   }
 
 
   .modeApp {
     background-color: var(--background-color-primary);
+  }
+
+  .scrollBarColor{
+    scrollbar-color: dark;
   }
  
 

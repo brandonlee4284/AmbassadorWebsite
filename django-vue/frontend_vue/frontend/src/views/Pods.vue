@@ -25,7 +25,7 @@
             </div>
             
             <div v-for="pod in APIData" :key="pod.id" class="col-md-4">
-              <div class="card mb-4 box-shadow buttonColor">
+              <div class="card mb-4 box-shadow podMode">
               <router-link :to = "{ name:'pod-view' }" exact>
                 <img class="card-img-top" src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80" alt="Card image cap" @click="getNumber(pod.pod_group_number)">
               </router-link>
@@ -170,6 +170,9 @@
 }
 .buttonColor{
   background-color: var(--background-color-third);
+}
+.podMode{
+  background-color: var(--background-color-pods);
 }
 
 </style>

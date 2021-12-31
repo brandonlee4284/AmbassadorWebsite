@@ -79,7 +79,7 @@ import { collapsed, toggleSidebar, sidebarWidth } from './state'
 
 <style scoped>
 .sidebar {
-  color: black;
+  color: #2c3e50;
   background-color: var(--sidebar-bg-color);
   float: left;
   position: fixed;
@@ -107,6 +107,6 @@ import { collapsed, toggleSidebar, sidebarWidth } from './state'
   transition: 0.2s linear;
 }
 .font{
-  color: black;
+  color: #2c3e50;
 }
 </style>
