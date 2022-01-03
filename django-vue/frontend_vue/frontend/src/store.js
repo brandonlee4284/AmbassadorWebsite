@@ -37,7 +37,7 @@ export default createStore({
       //console.log(state.accessToken != null)
       state.localStorageToken = localStorage.getItem('userDetails')
       //console.log(state.localStorageToken)
-      return state.accessToken != null
+      return state.localStorageToken != null
     }
   },
   actions: {
