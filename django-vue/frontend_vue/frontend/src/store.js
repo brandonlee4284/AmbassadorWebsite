@@ -5,21 +5,21 @@ export default createStore({
   state: {
      accessToken: null,
      refreshToken: null,
-     localStorageToken: null,
+     //localStorageToken: null,
      APIData: '',
      
   },
   mutations: {
-    updateStorage (state, { access, refresh, localStorageToken }) {
+    updateStorage (state, { access, refresh }) {
       state.accessToken = access
       state.refreshToken = refresh
-      localStorage.setItem('userDetails', localStorageToken)
+      //localStorage.setItem('userDetails', localStorageToken)
 
     },
     destroyToken (state) {
       state.accessToken = null
       state.refreshToken = null
-      localStorage.removeItem('userDetails')   
+      //localStorage.removeItem('userDetails')   
     },
     /*
     saveTokenInLocalStorage(tokenDetails){
@@ -35,9 +35,10 @@ export default createStore({
   getters: {
     loggedIn (state) {
       //console.log(state.accessToken != null)
-      state.localStorageToken = localStorage.getItem('userDetails')
+      //state.localStorageToken = localStorage.getItem('userDetails')
       //console.log(state.localStorageToken)
-      return state.localStorageToken != null
+      //return state.localStorageToken != null
+      return state.accessToken != null;
     }
   },
   actions: {
@@ -54,7 +55,7 @@ export default createStore({
             password: usercredentials.password
           })   
             .then(response => {
-              context.commit('updateStorage', { access: response.data.access, refresh: response.data.refresh, localStorageToken: response.data.refresh })
+              context.commit('updateStorage', { access: response.data.access, refresh: response.data.refresh })
               //context.commit('saveTokenInLocalStorage', { refresh: response.data.refresh })
               resolve()
             })
