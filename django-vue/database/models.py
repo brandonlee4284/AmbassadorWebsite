@@ -11,8 +11,8 @@ class Student(models.Model):
 
 class Pod(models.Model):
   pod_group_number = models.CharField(max_length=10)
-  pod_leader = models.CharField(max_length=100)
-  pod_room_number = models.CharField(max_length=10)
+  pod_leader = models.CharField(max_length=100, blank=True)
+  pod_room_number = models.CharField(max_length=10, blank=True)
   pod_group_members = models.TextField()
   additional_notes = models.TextField(blank=True)
   gender_ratio = models.CharField(max_length=200,blank=True)

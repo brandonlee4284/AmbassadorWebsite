@@ -6,21 +6,21 @@
         <br><br><br>
         <i class="fas fa-chevron-right" style="font-size:24px"></i> 
         <i class="fas fa-chevron-right" style="font-size:24px;margin:0 10px 0 0"></i> 
-        <a class="size"><router-link :to = "{ name:'activities' }" exact>Activities..</router-link></a>
+        <a class="size"><router-link :to = "{ name:'activities' }" exact class="link-mode">Activities..</router-link></a>
 
         
          <div v-for="resources in APIData" :key="resources.id" class="col-md-6">
             <br><br><br>
             <i class="fas fa-chevron-right" style="font-size:24px;"></i>
             <i class="fas fa-chevron-right" style="font-size:24px;margin:0 10px 0 0"></i> 
-            <a class="size" :href="resources.link" target="_blank"> {{resources.resource_name}}..</a>
+            <a class="size link-mode" :href="resources.link" target="_blank"> {{resources.resource_name}}..</a>
          </div>
 
 
          <br><br><br>
           <i class="fas fa-chevron-right" style="font-size:24px"></i>
           <i class="fas fa-chevron-right" style="font-size:24px;margin:0 10px 0 0"></i> 
-          <a class="size"><router-link :to = "{ name:'developers' }" exact>Developers..</router-link></a>
+          <a class="size "><router-link :to = "{ name:'developers' }" exact class="link-mode">Developers..</router-link></a>
          <br><br><br><br>
 
     </div>
@@ -56,6 +56,11 @@ export default {
 .fontMode{
   color: var(--text-primary-color);
 }
+.link-mode{
+  color: var(--background-color-links);
+}
+
+
 
 
 </style>

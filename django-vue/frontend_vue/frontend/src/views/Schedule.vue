@@ -14,9 +14,9 @@
                 <span class="time time-m font-mode">Time</span>
               </div>
             </div>
-            <div v-for="schedule in APIData" :key="schedule.id" >
+            <div v-for="schedule in APIData" :key="schedule.id">
               <hr><br><br><br>
-              <span class="activity-m font-mode"><a><router-link :to = "{ name:'activities' }" exact>{{schedule.activity}}</router-link></a></span>
+              <span class="activity-m font-mode"><a><router-link :to = "{ name:'activities' }" exact class="link-mode">{{schedule.activity}}</router-link></a></span>
               <span class="time time-m font-mode"><a>{{schedule.time_slot}}</a></span>
               <br><br><br><br>
             </div>
@@ -104,12 +104,15 @@ h2{
 }
 
 .mode_schedule{
-  background-color: var(--background-color-secondary);
+  background-color: var(--background-color-pods);
   
 }
 
 .font-mode{
   color: var(--text-primary-color);
+}
+.link-mode{
+  color: var(--background-color-links);
 }
  
 </style>

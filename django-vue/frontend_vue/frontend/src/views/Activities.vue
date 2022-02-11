@@ -51,6 +51,5 @@ export default {
 .fontMode{
   color: var(--text-primary-color);
 }
-
 </style>
 

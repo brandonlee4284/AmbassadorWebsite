@@ -2762,3 +2762,17 @@ while i != len(all_pod_groups_dictionary):
 #print(total_students)
 
 #print("\n\n",all_pod_groups_dictionary)
+
+
+# make a new dictionary of student info for display (name and ID)
+pod_counter = 1
+while pod_counter != len(all_pod_groups_dictionary)+1:
+    for index, key in enumerate(all_pod_groups_dictionary["Pod {0}".format(pod_counter)]):
+        print(all_pod_groups_dictionary["Pod {0}".format(pod_counter)][key])
+
+    pod_counter+=1
+
+
+
+
+

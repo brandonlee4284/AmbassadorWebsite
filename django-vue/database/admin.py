@@ -2809,9 +2809,19 @@ class PodAdmin(admin.ModelAdmin):
             #print(total_students)
 
             #print("\n\n",all_pod_groups_dictionary)
-        
-
-
+            members = {}
+            pod_counter = 1
+            while pod_counter != len(all_pod_groups_dictionary)+1:
+                for index, key in enumerate(all_pod_groups_dictionary["Pod {0}".format(pod_counter)]):
+                    members.setdefault(pod_counter, [])
+                    # shows all student info
+                    # members[pod_counter].append(all_pod_groups_dictionary["Pod {0}".format(pod_counter)][key])
+                    members[pod_counter].append(
+                        all_pod_groups_dictionary["Pod {0}".format(pod_counter)][key]["First Name"] + " " +
+                        all_pod_groups_dictionary["Pod {0}".format(pod_counter)][key]["Last Name"]
+                    )
+                    
+                pod_counter += 1
 
             i = 1
             while i <= number_of_total_pod_groups:
@@ -2819,12 +2829,14 @@ class PodAdmin(admin.ModelAdmin):
                     pod_group_number = "Pod {0}".format(i),
                     pod_leader = "Pod Leader", #change
                     pod_room_number = random.randint(100, 999), #change
-                    pod_group_members = all_pod_groups_dictionary["Pod {0}".format(i)],
+                    pod_group_members = members[i],
+                    #pod_group_members = all_pod_groups_dictionary["Pod {0}".format(i)],
                     gender_ratio = str(run.calculate_gender_ratio(all_pod_groups_dictionary, i, "All")) + " (M:F)",
                     school_standard_deviation = round(run.calculate_school_ratio(all_pod_groups_dictionary, i, "All"),2),
                     total_students = len(all_pod_groups_dictionary["Pod {0}".format(i)]),
 
                 )
+                
                 i += 1
 
                 

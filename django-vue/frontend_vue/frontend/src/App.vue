@@ -167,6 +167,7 @@ export default {
     --background-color-secondary: #fafafa;
     --background-color-third: #1e1e1e;
     --background-color-pods: #fafafa;
+    --background-color-links: #1F51FF;
     --accent-color: #cacaca;
     --text-primary-color: #2c3e50;
     --element-size: 4rem;
@@ -177,6 +178,7 @@ export default {
     --background-color-secondary: #2d2d30;
     --background-color-third: #2c3e50;
     --background-color-pods: #2c3e50;
+    --background-color-links: #ddd;
     --accent-color: #3f3f3f;
     --text-primary-color: #ddd;
     
