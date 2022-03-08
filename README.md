@@ -1,4 +1,4 @@
-# Ambassadors Project
+# Model Description
 Overview:
 We trained an end to end neural network to predict what pod group a student would be most optimal in, provided their data. The model's goal is to identify a pattern in the training data that would ultimately lead to an accurate prediction when encountering new data, in other words, a regression model. We were able to successfully build a functional model using a deep neural network (DNN) architecture with the ReLU activation function for the hidden layers and a linear activation function for the output layer as well as a dropout rate to prevent overfitting. Finally when compiling and fitting the model, we used the Mean Squared Error (MSE) loss function and a stochastic gradient descent-like optimizer that inherits back-propagation.
 
