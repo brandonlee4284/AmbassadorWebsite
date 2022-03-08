@@ -1,0 +1,5 @@
+cd django-vue
+python3 manage.py runserver &
+cd frontend_vue
+cd frontend
+npm run serve &
