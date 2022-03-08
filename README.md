@@ -3,7 +3,7 @@ clone project
 download dependencies: pip install -r /AmbassadorsProject/django-vue/requirements.txt
 cd into AmbassadorsProject directory
 type command: ./execute
-\n
+<br>
 Go to:\n
 http://localhost:8080/log-in (Pod leader website)\n
 http://127.0.0.1:8000/admin/login/?next=/admin/\n
