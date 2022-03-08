@@ -4,12 +4,17 @@ download dependencies: pip install -r /AmbassadorsProject/django-vue/requirement
 cd into AmbassadorsProject directory
 type command: ./execute
 <br>
-Go to:\n
-http://localhost:8080/log-in (Pod leader website)\n
-http://127.0.0.1:8000/admin/login/?next=/admin/\n
-\n
+<br>
+Go to:<br>
+http://localhost:8080/log-in (Pod leader website)
+<br>
+http://127.0.0.1:8000/admin/login/?next=/admin/ 
+<br>
+<br>
 Login to both:
+<br>
 User: admin
+<br>
 Pass: mvhsadmin
 
 # Model Description
