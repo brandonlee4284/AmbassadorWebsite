@@ -2,7 +2,9 @@
 clone project <br>
 download dependencies: pip install -r /AmbassadorsProject/django-vue/requirements.txt <br>
 cd into AmbassadorsProject directory <br>
-type command: ./execute
+type command: <br>
+./execute (windows) <br>
+./execute3 (mac/os)
 <br>
 <br>
 Go to:<br>
