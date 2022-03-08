@@ -1,7 +1,7 @@
 # Running Project
-clone project
-download dependencies: pip install -r /AmbassadorsProject/django-vue/requirements.txt
-cd into AmbassadorsProject directory
+clone project <br>
+download dependencies: pip install -r /AmbassadorsProject/django-vue/requirements.txt <br>
+cd into AmbassadorsProject directory <br>
 type command: ./execute
 <br>
 <br>
