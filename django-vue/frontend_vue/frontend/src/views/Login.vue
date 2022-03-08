@@ -19,6 +19,7 @@
           <p v-if="incorrectAuth" class="incorrect">Invalid password or username</p>
           <button type="submit" class="btn btn-md btn-primary btn-block">Login</button>
         </form>
+
         
         <br><br><br>
         <hr>
@@ -53,6 +54,7 @@ export default {
         })
         .then(() => {
           this.$router.push({ name: 'home' })
+          //toggleSidebar()
         })
         .catch(err => {
           console.log(err)

@@ -11,7 +11,8 @@
       <span v-else><a><img src="https://mvhs.mvla.net/images/logo.png" alt="" width = "160" height = "80"></a></span>
     </h1>
 
-    <div v-if="accessToken!=null">
+    <div v-if="accessToken!=null"> 
+      
       <SidebarLink to="/" icon="fas fa-home" @click="scrollToTop()"><b>Home</b></SidebarLink>
       <br>
       <SidebarLink to="/pods" icon="fas fa-users" @click="scrollToTop()"><b>Pods</b></SidebarLink>

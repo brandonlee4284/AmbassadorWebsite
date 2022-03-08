@@ -53,16 +53,16 @@
               Quick Links
             </h6>
             <p>
-              <a href="/" class="text-reset">Home</a>
+              <a href="/#" class="text-reset">Home</a>
             </p>
             <p>
-              <a href="/pods" class="text-reset">View Pods</a>
+              <a href="/#" class="text-reset">View Pods</a>
             </p>
             <p>
-              <a href="/schedule" class="text-reset">Day Schedule</a>
+              <a href="/#" class="text-reset">Day Schedule</a>
             </p>
             <p>
-              <a href="/resources" class="text-reset">Help</a>
+              <a href="/#" class="text-reset">Help</a>
             </p>
           </div>
 
